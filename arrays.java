@@ -76,16 +76,47 @@ public class arrays {
         for(int i=0;i<numbers.length;i++){
             int start=i;
             for(int j=i;j<numbers.length;j++){
+                int sum =0;
                 int end=j;
                 for(int k=start;k<=end;k++ ){//this loop is used for printing
                     System.out.print(numbers[k]+" ");
+                    sum=sum+numbers[k];
                 }
+                System.out.print(" Sum :"+ sum);
                 System.out.println();
 
             }
             System.out.println();
         }
     }
+
+    public static void SubarraySum(int numbers[]){
+        int sum =0;
+        int maxsum=Integer.MIN_VALUE;
+         for(int i=0;i<numbers.length;i++){
+            int start=i;
+            for(int j=i;j<numbers.length;j++){
+                
+                
+                int end=j;
+                sum =0;
+                for(int k=start;k<=end;k++ ){//this loop is used for printing
+                    
+                    sum=sum+numbers[k];
+                    
+                    
+                }System.out.println(sum);
+
+                if(sum>maxsum){
+                    maxsum=sum;
+                }
+                
+            }
+            
+        }
+        System.out.println("Max Sum="+maxsum);
+    }
+  
     public static void main(String[] args) {
         // linear search
 
@@ -126,7 +157,12 @@ public class arrays {
         // pairs(numbers);
 
         //subarrays in an array
-        int numbers[]={2,4,6,8,10};
-        printSubarrays(numbers);
+        // int numbers[]={2,4,6,8,10};
+        // printSubarrays(numbers);
+
+        //max Subarrays
+        int numbers[]={1,-2,6,-1,3};
+        SubarraySum(numbers);
+
     }
 }
