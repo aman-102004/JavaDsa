@@ -90,6 +90,8 @@ public class arrays {
         }
     }
 
+
+
     public static void SubarraySum(int numbers[]){
         int sum =0;
         int maxsum=Integer.MIN_VALUE;
@@ -117,6 +119,54 @@ public class arrays {
         System.out.println("Max Sum="+maxsum);
     }
   
+    public static void SubarraySumOptimised(int numbers[]){//using prefixes
+        int sum =0;
+        int maxsum=Integer.MIN_VALUE;
+        int prefix[]=new int[numbers.length];
+        prefix[0]=numbers[0];
+        //calculating prefix array
+        for(int i=1;i<prefix.length;i++){
+            prefix[i]=prefix[i-1]+numbers[i];
+        }
+
+         for(int i=0;i<numbers.length;i++){
+            int start=i;
+            for(int j=i;j<numbers.length;j++){
+                
+                
+                int end=j;
+                sum =start==0?prefix[end]:prefix[end]-prefix[start-1];
+                // for(int k=start;k<=end;k++ ){//this loop is used for printing
+                    
+                //     sum=sum+numbers[k];
+                    
+                    
+                // }
+                // System.out.println(sum);
+
+                if(sum>maxsum){
+                    maxsum=sum;
+                }
+                
+            }
+            
+        }
+        System.out.println("Max Sum="+maxsum);
+    }
+
+    public static void kadanes(int numbers[]){
+        int ms=Integer.MIN_VALUE;
+        int cs=0;
+
+        for(int i=0;i<numbers.length;i++){
+            cs=cs+numbers[i];
+            if(cs<0){
+                cs=0;
+            }
+            ms=Math.max(cs,ms);
+        }
+        System.out.println("our max Subarray sum is : "+ ms);
+    }
     public static void main(String[] args) {
         // linear search
 
@@ -160,9 +210,16 @@ public class arrays {
         // int numbers[]={2,4,6,8,10};
         // printSubarrays(numbers);
 
-        //max Subarrays
-        int numbers[]={1,-2,6,-1,3};
-        SubarraySum(numbers);
+        //max Subarrays Bruteforce
+        // int numbers[]={1,-2,6,-1,3};
+        // SubarraySum(numbers);
+
+        // int numbers[]={1,-2,6,-1,3};
+        // SubarraySumOptimised(numbers);
+
+        int numbers[]={-2,-3,4,-1,-2,1,5,-3};
+
+        kadanes(numbers);
 
     }
 }
