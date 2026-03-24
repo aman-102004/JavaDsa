@@ -1,7 +1,7 @@
 import java.util.*;
 public abstract class trappingrainwater {
 
-    public static int trappedRaniwater(int height[]){
+    public static int trappedRainwater(int height[]){
         //calculate left max boundry-array
         int n=height.length;
         int leftmax[]=new int[n];
@@ -35,6 +35,6 @@ public abstract class trappingrainwater {
 
     public static void main(String[] args) {
         int height[]={4,2,0,6,3,2,5};
-        System.out.println(trappedRaniwater(height)); 
+        System.out.println(trappedRainwater(height)); 
     }
 }
