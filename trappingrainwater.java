@@ -36,5 +36,8 @@ public abstract class trappingrainwater {
     public static void main(String[] args) {
         int height[]={4,2,0,6,3,2,5};
         System.out.println(trappedRainwater(height)); 
+
+        int height2[]={1,3,2,7,4,9,1,5};
+        System.out.println(trappedRainwater(height2));
     }
 }
