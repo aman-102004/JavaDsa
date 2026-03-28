@@ -167,6 +167,19 @@ public class arrays {
         }
         System.out.println("our max Subarray sum is : "+ ms);
     }
+
+    public static boolean duplicates(int numbers[]){
+        for (int i=0;i<numbers.length;i++){
+            for(int j=i+1;j<numbers.length;j++){
+                if(numbers[i]==numbers[j]){
+                    return true;
+                }
+            }
+        }
+        return false;
+
+        
+    }
     public static void main(String[] args) {
         // linear search
 
@@ -214,12 +227,16 @@ public class arrays {
         // int numbers[]={1,-2,6,-1,3};
         // SubarraySum(numbers);
 
+        //prefix method
         // int numbers[]={1,-2,6,-1,3};
         // SubarraySumOptimised(numbers);
 
-        int numbers[]={-2,-3,4,-1,-2,1,5,-3};
+        //kedanes algorithm
+        // int numbers[]={-2,-3,4,-1,-2,1,5,-3};
+        // kadanes(numbers);
 
-        kadanes(numbers);
+        int numbers[]={1,2,4,6,7};
+        System.out.println(duplicates(numbers));
 
     }
 }
