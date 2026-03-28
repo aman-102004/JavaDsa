@@ -3,14 +3,19 @@ public class sortingalgo {
     public static void bubblesort(int numbers[]){
 
         for(int i=0;i<numbers.length-1;i++){
+            int swap=0;
             for(int j=0;j<numbers.length-1-i;j++){
                 if(numbers[j]>numbers[j+1]){
                     int temp=numbers[j];
                     numbers[j]=numbers[j+1];
                     numbers[j+1]=temp;
+                    swap++;
 
                 }
-
+            }
+            if(swap==0){
+                System.out.println("Array is already sorted");
+                break;
             }
 
         }
@@ -25,7 +30,7 @@ public class sortingalgo {
     }
     public static void main(String[] args) {
 
-        int  numbers[]={3,2,5,4,1};
+        int  numbers[]={1,2,3};
         bubblesort(numbers);
         printarr(numbers);
         
