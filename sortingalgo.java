@@ -37,6 +37,20 @@ public class sortingalgo {
 
         }
     }
+    
+    public static void insertionsort(int numbers[]){
+        for(int i=1;i<numbers.length;i++){
+            int curr=numbers[i];
+            int prev=i-1;
+            //finding out the correct position for the element
+            while(prev>=0&& numbers[prev]>curr){
+                numbers[prev+1]=numbers[prev];
+                prev--;
+            }
+            //insertion
+            numbers[prev+1]=curr;
+        }
+    }
 
     public static void printarr(int numbers[]){
         for(int i=0;i<numbers.length;i++){
@@ -47,7 +61,7 @@ public class sortingalgo {
     public static void main(String[] args) {
 
         int  numbers[]={1,2,3,8,4,9};
-        selectionsort(numbers);
+        insertionsort(numbers);
         printarr(numbers);
         
     }
