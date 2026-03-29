@@ -22,6 +22,22 @@ public class sortingalgo {
 
     }
 
+    public static void selectionsort(int numbers[]){
+        for(int i=0;i<numbers.length-2;i++){
+            int minpos=i;
+            for(int j=i+1;j<numbers.length;j++){
+                if(numbers[minpos]>numbers[j]){
+                    minpos=j;
+                }
+            }
+            //swap
+            int temp=numbers[minpos];
+            numbers[minpos]=numbers[i];
+            numbers[i]=temp;
+
+        }
+    }
+
     public static void printarr(int numbers[]){
         for(int i=0;i<numbers.length;i++){
             System.out.print(numbers[i]+" ");
@@ -30,8 +46,8 @@ public class sortingalgo {
     }
     public static void main(String[] args) {
 
-        int  numbers[]={1,2,3};
-        bubblesort(numbers);
+        int  numbers[]={1,2,3,8,4,9};
+        selectionsort(numbers);
         printarr(numbers);
         
     }
