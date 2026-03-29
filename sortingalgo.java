@@ -52,6 +52,27 @@ public class sortingalgo {
         }
     }
 
+    public static void coutingsort(int numbers[]){
+        int largest=Integer.MIN_VALUE;
+        for(int i=0;i<numbers.length;i++){
+            largest=Math.max(largest, numbers[i]); 
+        }
+        int count[]=new int[largest+1];
+        for(int i=0;i<numbers.length;i++){
+            count[numbers[i]]++;
+
+        }
+        //sorting
+        int j=0;
+        for(int i=0;i<count.length;i++){
+            while(count[i]>0){
+                numbers[j]=i;
+                j++;
+                count[i]--;
+            }
+        }
+    }
+
     public static void printarr(int numbers[]){
         for(int i=0;i<numbers.length;i++){
             System.out.print(numbers[i]+" ");
@@ -61,7 +82,7 @@ public class sortingalgo {
     public static void main(String[] args) {
 
         int  numbers[]={1,2,3,8,4,9};
-        insertionsort(numbers);
+        coutingsort(numbers);
         printarr(numbers);
         
     }
