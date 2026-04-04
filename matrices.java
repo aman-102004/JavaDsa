@@ -38,7 +38,7 @@ public class matrices {
         }
         return sum;
     }
-    public static void main(String[] args) {
+    public static void main(Strings[] args) {
     //     int matrix[][]=new int[3][3];
     //     int n=matrix.length;//for no of rows;
     //     int m=matrix[0].length;//for no of columns;

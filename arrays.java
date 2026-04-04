@@ -180,7 +180,7 @@ public class arrays {
 
         
     }
-    public static void main(String[] args) {
+    public static void main(Strings[] args) {
         // linear search
 
         // int numbers[]={2,4,6,8,10,12,14,16};

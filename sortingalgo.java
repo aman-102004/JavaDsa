@@ -79,7 +79,7 @@ public class sortingalgo {
         }
         System.out.println();
     }
-    public static void main(String[] args) {
+    public static void main(Strings[] args) {
 
         int  numbers[]={1,2,3,3,3,1,5,8,4,9};
         coutingsort(numbers);
