@@ -1,4 +1,6 @@
 import java.util.*;
+
+import javax.sound.sampled.SourceDataLine;
 public class Strings {
 
     public static void printletters(String str){
@@ -41,6 +43,15 @@ public class Strings {
         double distance=Math.sqrt(Math.pow(start,2)+Math.pow(end,2));
         return (float)distance;
     }
+
+    public static String substring(String str,int si,int ei){
+        String Substr="";
+        for(int i=si;i<ei;i++){
+            Substr+=str.charAt(i);
+        }
+        return Substr;
+
+    }
     public static void main(String[] args) {
         // char arr[]={'a','b','c','d'};
         // String str="abcd";
@@ -67,10 +78,26 @@ public class Strings {
         // String str="aman";
         // System.out.println(checkPalindrome(str));;
 
-        String direction="WNEENESENNN";
-        System.out.println(distancefromorigin(direction));
+        // String direction="WNEENESENNN";
+        // System.out.println(distancefromorigin(direction));
 
         //we can use str.equals(str3) to compare values of two strings because == fails in case of strings when declared using new keyword
-    }
-    
+        
+        // String str ="HelloWorld";
+        // System.out.println(substring(str, 0, 4));
+        // //there exists an susbstring function str.substring(si,ei);
+        // }
+
+        //for printing the largest string among all we use str1.compareTo(str2) returns values 0,-1 and +1 we can use compareTo to avoid the problem of capital and small alphabets
+        String fruits[]={"apple","mango","banana"};
+        String Largest=fruits[0];
+        for(int i=1;i<fruits.length;i++){
+            if(Largest.compareTo(fruits[i])<0){
+                Largest=fruits[i];
+            }
+
+        }
+        System.out.println(Largest);
+
+}
 }
