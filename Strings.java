@@ -52,6 +52,44 @@ public class Strings {
         return Substr;
 
     }
+
+    public static String toUpperCase(String str){
+        StringBuilder sb=new StringBuilder("");
+        char ch=Character.toUpperCase(str.charAt(0));
+        sb.append(ch);
+        for(int i=1;i<str.length();i++){
+            if(str.charAt(i)==' ' &&i<str.length()-1){
+                sb.append(str.charAt(i));
+                i++;
+                sb.append(Character.toUpperCase(str.charAt(i)));
+            }
+            else{
+                sb.append(str.charAt(i));
+            }
+
+        }
+        return sb.toString();
+    }
+
+    public static String StringCompression(String str){
+        StringBuilder sb=new StringBuilder("");
+
+        for(int i=0;i<str.length();i++){
+            Integer count=1;
+
+            while(i<str.length()-1 && str.charAt(i)==str.charAt(i+1)){
+                count++;
+                i++;
+
+            }
+            sb.append(str.charAt(i));
+            if(count>1){
+                sb.append(count);
+            }
+            
+        }
+        return sb.toString();
+    }
     public static void main(String[] args) {
         // char arr[]={'a','b','c','d'};
         // String str="abcd";
@@ -89,15 +127,21 @@ public class Strings {
         // }
 
         //for printing the largest string among all we use str1.compareTo(str2) returns values 0,-1 and +1 we can use compareTo to avoid the problem of capital and small alphabets
-        String fruits[]={"apple","mango","banana"};
-        String Largest=fruits[0];
-        for(int i=1;i<fruits.length;i++){
-            if(Largest.compareTo(fruits[i])<0){
-                Largest=fruits[i];
-            }
+        // String fruits[]={"apple","mango","banana"};
+        // String Largest=fruits[0];
+        // for(int i=1;i<fruits.length;i++){
+        //     if(Largest.compareTo(fruits[i])<0){
+        //         Largest=fruits[i];
+        //     }
 
-        }
-        System.out.println(Largest);
+        // }
+        // System.out.println(Largest);
+
+        // String str="hi, i am aman";
+        // System.out.println(toUpperCase(str));
+
+        String str="aaabbbcccc";
+        System.out.println(StringCompression(str));
 
 }
 }
