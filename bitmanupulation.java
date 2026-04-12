@@ -52,6 +52,13 @@ public class bitmanupulation {
         int bitmass=(~0)<<i;
         return n&bitmass;
     }
+
+    public static int clearIBits(int n,int i,int j){
+        int a=((~0)<<(j+1));
+        int b=(1<<i)-1;
+        int bitmass=a | b;
+        return n&bitmass;
+    }
     public static void main(String[] args) {
         // oddoreven(3);
 
