@@ -1,15 +1,18 @@
 public class oops {
     public static void main(String[] args) {
-        Pen p1=new Pen();//created a pen object called p1
-        p1.setcolor("Blue");
-        System.out.println(p1.getcolor());
-        p1.settip(7);
-        System.out.println(p1.gettip());
+        // Pen p1=new Pen();//created a pen object called p1
+        // p1.setcolor("Blue");
+        // System.out.println(p1.getcolor());
+        // p1.settip(7);
+        // System.out.println(p1.gettip());
 
         // Bankaccount myacc=new Bankaccount();
         // myacc.Username="Aman";
         // myacc.setpassword("Amanv");
+
+        Student s1=new Student("Shradhha");
         
+        System.out.println(s1.name);
     }
     
 }
@@ -25,27 +28,37 @@ public class oops {
 
 // }
 
-class Pen{
-    //prop +func
+// class Pen{
+//     //prop +func
 
-    private String color;
-    private int tip;
+//     private String color;
+//     private int tip;
 
-    String getcolor(){
-        return this.color;
-    }
+//     String getcolor(){
+//         return this.color;
+//     }
 
-    int gettip(){
-        return this.tip;
-    }
-    void setcolor(String newColor){
-        this.color=newColor;
+//     int gettip(){
+//         return this.tip;
+//     }
+//     void setcolor(String newColor){
+//         this.color=newColor;
         
-    }
-    void settip(int newTip){
-        this.tip=newTip;
+//     }
+//     void settip(int newTip){
+//         this.tip=newTip;
         
+//     }
+
+
+// }
+
+class Student{
+    String name; 
+    int roll;
+
+    Student(String name){//constructor
+        this.name=name;
+        System.out.println("Constructor is called");
     }
-
-
 }
