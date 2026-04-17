@@ -117,42 +117,73 @@ public static void main(String[] args) {
     // fish shark=new fish();
     // shark.eat();
 
-    Dog dobby=new Dog();
-    dobby.eat();
-    dobby.legs=4;
-    System.out.println(dobby.legs);
+    // Dog dobby=new Dog();
+    // dobby.eat();
+    // dobby.legs=4;
+    // System.out.println(dobby.legs);
 
+    calculator calc=new calculator();
+    
+    System.out.println(calc.sum(1, 2));
+    System.out.println(calc.sum((float)0.1,(float)1.1));
+    System.out.println(calc.sum(1,2,3));
 
+    deer d =new deer();
+    d.eat();
 }
 
 
 //Base Class
 
 }
-class Animal{
+// class Animal{
     
-    String color;
+//     String color;
+//     void eat(){
+//         System.out.println("eats");
+
+//     }
+
+//     void breathe(){
+//         System.out.println("breathes");
+//     }
+
+// }
+
+// class Mammals extends Animal{
+//     int legs;
+
+// }
+
+// class Dog extends Mammals{
+//     String breed;
+// }
+
+class animal{
     void eat(){
-        System.out.println("eats");
-
-    }
-
-    void breathe(){
-        System.out.println("breathes");
+        System.out.println("eats everything");
     }
 
 }
 
-class Mammals extends Animal{
-    int legs;
-
+class deer extends animal{
+    void eat(){
+        System.out.println("eats grass");
+    }
 }
 
-class Dog extends Mammals{
-    String breed;
+class calculator{
+    int sum(int a,int b){
+        return a+b;
+    }
+    float sum(float a,float b){
+        return a+b;
+    }
+
+    int sum(int a ,int b,int c){
+        return a+b+c;
+    }
 }
-
-
 
 //dervived class
 
