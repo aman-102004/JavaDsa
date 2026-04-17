@@ -1,37 +1,38 @@
 public class oops {
-    public static void main(String[] args) {
-        // Pen p1=new Pen();//created a pen object called p1
-        // p1.setcolor("Blue");
-        // System.out.println(p1.getcolor());
-        // p1.settip(7);
-        // System.out.println(p1.gettip());
+//     public static void main(String[] args) {
+//         // Pen p1=new Pen();//created a pen object called p1
+//         // p1.setcolor("Blue");
+//         // System.out.println(p1.getcolor());
+//         // p1.settip(7);
+//         // System.out.println(p1.gettip());
 
-        // Bankaccount myacc=new Bankaccount();
-        // myacc.Username="Aman";
-        // myacc.setpassword("Amanv");
+//         // Bankaccount myacc=new Bankaccount();
+//         // myacc.Username="Aman";
+//         // myacc.setpassword("Amanv");
 
-        Student s1=new Student();
-        s1.name="Surbhi";
-        s1.roll=456;
-        s1.password="abcd";
-        s1.marks[0]=100;
-        s1.marks[1]=90;
-        s1.marks[2]=80;
+//         Student s1=new Student();
+//         s1.name="Surbhi";
+//         s1.roll=456;
+//         s1.password="abcd";
+//         s1.marks[0]=100;
+//         s1.marks[1]=90;
+//         s1.marks[2]=80;
 
-        Student s2=new Student(s1);
-        s2.password="xyz";
+//         Student s2=new Student(s1);
+//         s2.password="xyz";
 
-        // System.out.println(s2.name);
-        // System.out.println(s1.name);
+//         s1.marks[2]=100;
+//         // System.out.println(s2.name);
+//         // System.out.println(s1.name);
 
-        for(int i=0;i<3;i++){
-            System.out.println(s2.marks[i]);
-        }
+//         for(int i=0;i<3;i++){
+//             System.out.println(s2.marks[i]);
+//         }
 
        
-    }
+//     }
     
-}
+// }
 
 // class Bankaccount{
 
@@ -69,26 +70,96 @@ public class oops {
 
 // }
 
-class Student{
-    String name; 
-    int roll;
-    String password;
-    int marks[];
-    Student(Student s1){
-        marks=new int[3];
-        this.name=s1.name;
-        this.roll=s1.roll;
-        this.marks=s1.marks;
+// class Student{
+//     String name; 
+//     int roll;
+//     String password;
+//     int marks[];
+
+    //shallow copy constructor
+    // Student(Student s1){
+    //     marks=new int[3];
+    //     this.name=s1.name;
+    //     this.roll=s1.roll;
+    //     this.marks=s1.marks;
         
+    // }
+
+    //deep copy constructor
+    
+    // Student(Student s1){
+    //     marks=new int[3];
+    //     this.name=s1.name;
+    //     this.roll=s1.roll;
+    //     for(int i=0;i<marks.length;i++){
+    //     this.marks[i]=s1.marks[i];
+    //    }
+
+    // }
+
+
+    //non parameterized constructor
+    // Student(){
+    //      marks=new int[3];
+    //     System.out.println("Hi,i am a construtor");
+    // }
+
+    // //parameterized constructor
+    // Student(String name){//constructor
+    //      marks=new int[3];
+    //     this.name=name;
+    //     System.out.println("Constructor is called");
+    // }
+
+
+
+public static void main(String[] args) {
+    // fish shark=new fish();
+    // shark.eat();
+
+    Dog dobby=new Dog();
+    dobby.eat();
+    dobby.legs=4;
+    System.out.println(dobby.legs);
+
+
+}
+
+
+//Base Class
+
+}
+class Animal{
+    
+    String color;
+    void eat(){
+        System.out.println("eats");
+
     }
 
-    Student(){
-         marks=new int[3];
-        System.out.println("Hi,i am a construtor");
+    void breathe(){
+        System.out.println("breathes");
     }
-    Student(String name){//constructor
-         marks=new int[3];
-        this.name=name;
-        System.out.println("Constructor is called");
-    }
+
 }
+
+class Mammals extends Animal{
+    int legs;
+
+}
+
+class Dog extends Mammals{
+    String breed;
+}
+
+
+
+//dervived class
+
+// class fish extends Animal{
+//     int fins;
+
+//     void swim(){
+//         System.out.println("Swims in water");
+//     }
+// }
