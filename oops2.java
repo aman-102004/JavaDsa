@@ -1,16 +1,16 @@
-public class oops2 {
-    // public static void main(String[] args) {
-    //     horse h=new horse();
-    //     h.eat();
-    //     h.walk();
-    //     System.out.println(h.color);
+// public class oops2 {
+//     // public static void main(String[] args) {
+//     //     horse h=new horse();
+//     //     h.eat();
+//     //     h.walk();
+//     //     System.out.println(h.color);
 
 
-    //     mustang m1=new mustang();
+//     //     mustang m1=new mustang();
 
-    // }
+//     // }
     
-}
+// }
 
 // abstract class Animal{//we cannot create objects for an abstract class
 //     String color;
@@ -57,4 +57,56 @@ public class oops2 {
 //Interfaces
 //interfaces are blueprint of a class 
 //just lke classes are blueprint of objects
-//interface(blueprint of class)->class(blueprint of object)->objects
+//interface(blueprint of class)->class(blueprint of object)->objects    
+//interfaces always allow 100% abstraction which abstract classes fail to
+//interfaces are used for multiple inheritance and total inheritance
+
+public class oops2 {
+    public static void main(String[] args) {
+        beer b=new beer();
+        b.eatnonveg();
+        b.eatveg();
+        
+    }
+    
+}
+
+// interface Chessplayer{
+//     void moves();
+// }
+
+
+// class Queen implements Chessplayer{
+//     public void moves(){
+//         System.out.println("up,down,left,right,diagonal(in all directions)");
+//     }
+// }
+
+// class Rook implements Chessplayer{
+//     public void moves(){
+//         System.out.println("left right all directions");
+
+//     }
+
+// }
+
+//multiple inheritance implementation
+
+interface carivore{
+    void eatnonveg();
+}
+
+interface herbivore{
+    void eatveg();
+}
+
+class beer implements herbivore,carivore{
+    public void eatnonveg(){
+        System.out.println("Yeah i can eat it");
+
+    }
+
+    public void eatveg(){
+        System.out.println("yeah i eat veg" );
+    }
+}
