@@ -32,11 +32,91 @@ public class Recursion2 {
             RemoveDuplicates(str, idx+1, sb.append(currchar), map);
         }
     }
+
+    public static int friendspairing (int n){
+
+        if(n==1 || n==2){
+            return n;
+        }
+        //choice
+
+        //1st choice remain single
+        int fnm1=friendspairing(n-1);
+
+        //2nd choice make a pairs
+
+        int fnm2=friendspairing(n-2)*(n-1);
+
+        return fnm1+fnm2;
+    }
+
+    public static void BinaryStrings(int n,int lastplace,String str){
+
+        if(n==0){
+            System.out.println(str);
+            return;
+        }
+
+        BinaryStrings(n-1,0, str+"0");
+        if(lastplace==0){
+            BinaryStrings(n-1,1, str+"1");
+        }
+    }
+
+    public static void Occurences(int arr[],int key,int startindex){
+
+        if(startindex==arr.length){
+            return;
+        }
+        // int current=arr[startindex];
+        // if(current==key){
+        //     System.out.println(startindex);
+        //     Occurences(arr, key, startindex+1);
+        // }
+        // else{
+        // Occurences(arr, key, startindex+1);
+
+        if(arr[startindex]==key){
+            System.out.println(startindex+" ");
+        }
+        Occurences(arr, key, startindex+1);
+        }
+    
+    static String digits[]={"zero","one","two","three","four","five","six","seven","eight","nine"};
+
+    public static void printdigits(int n){
+        if(n==0){
+            return;
+        }
+        int lastdigit=n%10;
+        printdigits(n/10);
+        System.out.print(digits[lastdigit]+" ");
+    }
+
+    public static void towerofHanoi(int n,String src,String helper,String dest){
+        if(n==1){
+            System.out.println("Transfer disc"+n +"from"+src +"to"+ dest);
+            return;
+        
+        }
+
+        
+
+    }
+
     public static void main(String[] args) {
         // System.out.println(tilingProblem(3));
 
-        String str="aapnaaaacollegge";
-        RemoveDuplicates(str,0,new StringBuilder(""),new boolean[26]);
+        // String str="aapnaaaacollegge";
+        // RemoveDuplicates(str,0,new StringBuilder(""),new boolean [26]);
+
+        // System.out.println(friendspairing(5));
+        // BinaryStrings(3, 0,"");
+
+        // int arr[]={1,2,3,2,6,3,2,2,5,2};
+        // Occurences(arr, 2, 0);
+
+        printdigits(2013);
 
     }
 
