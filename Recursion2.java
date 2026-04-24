@@ -93,15 +93,21 @@ public class Recursion2 {
         System.out.print(digits[lastdigit]+" ");
     }
 
-    public static void towerofHanoi(int n,String src,String helper,String dest){
-        if(n==1){
-            System.out.println("Transfer disc"+n +"from"+src +"to"+ dest);
+    public static void towerOfHanoi(int n, String src, String helper, String dest) {
+
+        if (n == 1) {
+            System.out.println("Transfer disk 1 from " + src + " to " + dest);
             return;
-        
         }
 
-        
+        // Step 1: move n-1 disks from src to helper
+        towerOfHanoi(n - 1, src, dest, helper);
 
+        // Step 2: move nth disk
+        System.out.println("Transfer disk " + n + " from " + src + " to " + dest);
+
+        // Step 3: move n-1 from helper to dest
+        towerOfHanoi(n - 1, helper, src, dest);
     }
 
     public static void main(String[] args) {
@@ -116,7 +122,9 @@ public class Recursion2 {
         // int arr[]={1,2,3,2,6,3,2,2,5,2};
         // Occurences(arr, 2, 0);
 
-        printdigits(2013);
+        // printdigits(2013);
+
+        towerOfHanoi(3,"A","B","C");
 
     }
 
