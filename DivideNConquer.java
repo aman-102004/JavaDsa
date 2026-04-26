@@ -90,11 +90,53 @@ public class DivideNConquer {
 
     }
 
-    public static void main(String[] args) {
-        int arr[]={6,3,9,5,2,8};
-        quickSort(arr, 0, arr.length-1);
-        printarray(arr);
+    public static int rotatedarrysearch(int arr[],int target,int si,int ei){//modified binary search approach
+       if(si>ei){
+        return -1;
+       }
+       
+       
+        int mid=si+(ei-si)/2;
 
+        //found at mid
+        if(arr[mid]==target){
+            return mid;
+        }
+
+        //mid at line one
+        if(arr[si]<=arr[mid]){
+            //case a:left
+            if(arr[si]<=target && target <=arr[mid]){
+                return rotatedarrysearch(arr, target, si, mid-1);
+
+            }
+            //case b:right
+            else{
+                return rotatedarrysearch(arr, target, mid+1, ei);
+            }
+
+
+        }
+        else{
+            //case c:right
+            if(arr[mid]<=target && target<=arr[ei]){
+                return rotatedarrysearch(arr, target, mid+1, ei);
+            }
+            else{
+                //case d:left
+                return rotatedarrysearch(arr, target, si, mid-1);
+            }
+
+        }
+
+    }
+    public static void main(String[] args) {
+        int arr[]={4,5,6,7,1,2,3};
+        // quickSort(arr, 0, arr.length-1);
+        // printarray(arr);
+        int target=2;
+        int tidx=rotatedarrysearch(arr, target, 0, arr.length-1);
+        System.out.println(tidx);
         
 
     }
