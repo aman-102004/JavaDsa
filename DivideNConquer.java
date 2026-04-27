@@ -134,7 +134,7 @@ public class DivideNConquer {
         int arr[]={4,5,6,7,1,2,3};
         // quickSort(arr, 0, arr.length-1);
         // printarray(arr);
-        int target=2;
+        int target=7;
         int tidx=rotatedarrysearch(arr, target, 0, arr.length-1);
         System.out.println(tidx);
         
