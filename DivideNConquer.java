@@ -151,7 +151,7 @@ public class DivideNConquer {
         return -1;
     }
     public static void main(String[] args) {
-        int arr[]={4,5,6,7,1,2,3};
+        int arr[]={4,5,6,7,1,2,3,9,8};
         // quickSort(arr, 0, arr.length-1);
         // printarray(arr);
         int target=7;
