@@ -151,11 +151,14 @@ public class DivideNConquer {
         return -1;
     }
     public static void main(String[] args) {
-        int arr[]={4,5,6,7,1,2,3,9,8};
+        int arr[]={4,5,6,7,1,2,3};
         // quickSort(arr, 0, arr.length-1);
         // printarray(arr);
-        int target=7;
-        int tidx=rotatedarrysearch(arr, target, 0, arr.length-1);
+        int target=5;
+        // int tidx=rotatedarrysearch(arr, target, 0, arr.length-1);
+        // System.out.println(tidx);
+
+        int tidx=rotatedarrysearch(arr, target,0, arr.length-1);
         System.out.println(tidx);
         
 
