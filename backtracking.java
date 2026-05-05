@@ -132,6 +132,20 @@ public class backtracking{
             System.out.println();
         }
     }
+
+    public static int gridWays(int i,int j,int n,int m){
+        if(i==n-1 && j==m-1){
+            return 1;
+        }else if(i==n || j==n){
+            return 0;
+        }
+
+        
+        int w1=gridWays(i+1, j, n, m);
+        int w2=gridWays(i,j+1,n,m); 
+
+        return w1+w2;
+    }
     public static void main(String[] args) {
         // // int arr[]=new int[5];
         // // changearr(arr, 0, 1);
@@ -142,26 +156,29 @@ public class backtracking{
         // // findSubsets(str, "", 0);
         // findpermutation(str, "");
 
-        int n=4;
-        char board[][]=new char[n][n];
-        //initialise
-        for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++){
-                board[i][j]='x';
-            }
-        }
+        // int n=4;
+        // char board[][]=new char[n][n];
+        // //initialise
+        // for(int i=0;i<n;i++){
+        //     for(int j=0;j<n;j++){
+        //         board[i][j]='x';
+        //     }
+        // }
 
-        // nQueens(board,0);
-        // System.out.println("Total ways to solve n queens is:"+ count);
+        // // nQueens(board,0);
+        // // System.out.println("Total ways to solve n queens is:"+ count);
         
 
-        if(nQueens(board, 0)){
-            System.out.println("Solution is possible");
-            printboard(board);
-        }else{
-            System.out.println("Solution is not possible");
-        }
+        // if(nQueens(board, 0)){
+        //     System.out.println("Solution is possible");
+        //     printboard(board);
+        // }else{
+        //     System.out.println("Solution is not possible");
+        // }
     
+        int n=3,m=3;
+        System.out.println(gridWays(0, 0, n, m));
+
     
     }
 }
