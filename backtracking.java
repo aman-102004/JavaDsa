@@ -169,7 +169,7 @@ public class backtracking{
         int sr=(row/3)*3;
         int sc=(col/3)*3;
 
-        for(int i=sr;i<sr+1;i++){
+        for(int i=sr;i<sr+3;i++){
             for(int j=sc;j<sc+3;j++){
                 if(sudoku[i][j]==digit){
                     return false;
