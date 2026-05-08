@@ -19,7 +19,7 @@ public class arraylists {
         //1.add operation
         list.add(1);
         list.add(2);
-        list.add(3);
+        list.add(9);
         list.add(4);
         list.add(5);
 
@@ -85,8 +85,18 @@ public class arraylists {
         // System.out.println(list);
 
         //Sorting an Array list
-         
+        //using collections.sort (collections is a class)for sorting elemetns in ascending order
 
+        Collections.sort(list);
+
+        System.out.println(list);
+
+
+        //for sorting in descending order
+
+        Collections.sort(list,Collections.reverseOrder());
+
+        System.out.println(list);
 
     }
     
