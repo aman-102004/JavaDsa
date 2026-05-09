@@ -25,7 +25,22 @@ public class MultidimentionalArrayLists {
         int hp=height.size()-1;
 
         int maxwater=0;
-        
+         while(lp<hp){
+            int h=Math.min(height.get(lp),height.get(hp));
+            int width=hp-lp;
+            int currwater=h*width;
+            maxwater=Math.max(maxwater,currwater);
+
+            if(height.get(lp)<height.get(hp)){
+                lp++;
+            }
+            else{
+                hp--;
+            }
+           
+
+         }
+          return maxwater;
     }
     public static void main(String[] args) {
         // ArrayList <ArrayList<Integer>> mainlist=new ArrayList<>();
@@ -61,6 +76,7 @@ public class MultidimentionalArrayLists {
         height.add(7);
 
         System.out.println(storewater(height));
+        System.out.println(storewater2(height));
 
     }
     

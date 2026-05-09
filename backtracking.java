@@ -217,6 +217,8 @@ public class backtracking{
         return false;
     }
 
+
+
     public static void printsudoku(int sudoku[][]){
         for(int i=0;i<9;i++){
             for(int j=0;j<9;j++){
@@ -224,7 +226,11 @@ public class backtracking{
             }
             System.out.println();
         }
-    }
+    } 
+
+    
+
+    
 
     public static void main(String[] args) {
         // // int arr[]=new int[5];
