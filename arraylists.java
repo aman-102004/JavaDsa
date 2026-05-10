@@ -137,7 +137,8 @@ public class arraylists {
 
         list.add(8);
         list.add(9);
-        list.add(10);
+        list.add(10);   
+        
 
         int target=16;
 

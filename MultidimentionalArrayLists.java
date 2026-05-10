@@ -74,6 +74,7 @@ public class MultidimentionalArrayLists {
         height.add(8);
         height.add(3);
         height.add(7);
+        height.add(9);
 
         System.out.println(storewater(height));
         System.out.println(storewater2(height));
