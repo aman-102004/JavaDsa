@@ -13,10 +13,12 @@ public class LinkedList {
 
     public static Node head;
     public static Node tail;
+    public static int size;
 
     public void addFirst(int data){
         //step 1 -create new node
         Node newNode=new Node(data);
+        size++;
         if(head==null){
             head=tail=newNode;
             return;
@@ -37,6 +39,7 @@ public class LinkedList {
 
     public void addLast(int data){
         Node newNode=new Node(data);
+        size++;
 
         if(head==null){
             head=tail=newNode;
@@ -53,7 +56,7 @@ public class LinkedList {
         // if(head==null){
         //     System.out.println("Linked List is empty");
 
-        // }
+        // } 
         Node temp=head;
         //this is how we gonna perform operations on link lsit by using the variale temp
 
@@ -63,6 +66,31 @@ public class LinkedList {
 
         }
         System.out.println("null");
+
+    }
+
+    public void addinmiddle(int idx,int data){
+
+        if(idx==0){
+            addFirst(data);
+            return;
+        }
+        Node newNode=new Node(data);
+        size++;
+        Node temp=head;
+
+        int i=0;
+
+        while(i<idx-1){
+            temp=temp.next;
+            i++;
+        }
+        //i=idx-1;temp->prev
+
+        newNode.next=temp.next;
+        temp.next=newNode;
+
+
 
     }
 
@@ -78,8 +106,11 @@ public class LinkedList {
 
         ll.addLast(3);
         ll.addLast(4);//O(1);
+
+        ll.addinmiddle(2, 9);
         
         ll.printData();
+        System.out.println(ll.size);
     }
     
 }
