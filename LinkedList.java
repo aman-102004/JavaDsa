@@ -444,6 +444,7 @@ public class LinkedList {
         ll.addFirst(3);
         ll.addFirst(4);
         ll.addFirst(5);
+        ll.addFirst(6);
 
         ll.printData();
 
