@@ -136,6 +136,10 @@ public class stack {
         pushAtBottom(s, top);
     }
 
+    public static void StockSpan(){
+
+    }
+
     public static void main(String[] args) {
         //we can create stack using prebuilt stack library 
         //Stack<Integer>s=new Stack<>();
