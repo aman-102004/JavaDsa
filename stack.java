@@ -169,6 +169,7 @@ public class stack {
         // printStack(s);
         reverseStack(s);
         // 1 2 3
+        
         printStack(s);
         
 
