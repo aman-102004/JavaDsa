@@ -136,7 +136,27 @@ public class stack {
         pushAtBottom(s, top);
     }
 
-    public static void StockSpan(){
+    public static void StockSpan(int stocks[],int span[]){
+        Stack<Integer> s=new Stack<>();
+        span[0]=1;
+        s.push(0);
+
+        for(int i=1;i<stocks.length;i++){
+            int currPrice=stocks[i];
+            while(!s.isEmpty() && currPrice>stocks[s.peek()]){
+                s.pop();
+
+            }
+            if(s.isEmpty()){
+                span[i]=i+1;
+
+            }else{
+                int prevhigh=s.peek();
+                span[i]=i-prevhigh;
+            }
+            s.push(i);
+        }
+
 
     }
 
@@ -165,17 +185,57 @@ public class stack {
         // System.out.println(result);
 
 
-        Stack <Integer>s=new Stack<>();
-        s.push(1);
-        s.push(2);
-        s.push(3);
-        s.push(4);
-        //3 2 1
-        // printStack(s);
-        reverseStack(s);
-        // 1 2 3
+        // Stack <Integer>s=new Stack<>();
+        // s.push(1);
+        // s.push(2);
+        // s.push(3);
+        // s.push(4);
+        // //3 2 1
+        // // printStack(s);
+        // reverseStack(s);
+        // // 1 2 3
 
-        printStack(s);
+        // printStack(s);
+
+        // int stocks[]={100,80,60,70,60,85,100};
+        // int span[]=new int[stocks.length];
+        // StockSpan(stocks,span);
+
+        // for(int i=0;i<span.length;i++){
+        //     System.out.print(span[i]+" ");
+        // }
+
+        int arr[]={6,8,0,1,3};
+
+        Stack<Integer> s=new Stack<>();
+
+        int nxtGreater[]=new int[arr.length];
+
+        for(int i=arr.length-1;i>=0;i--){
+            //while
+            while(!s.isEmpty()&& arr[s.peek()]<=arr[i]){
+                s.pop();
+            }
+
+
+            //ifelse
+            if(s.isEmpty()){
+                nxtGreater[i]=-1;
+
+            }else{
+                nxtGreater[i]=arr[s.peek()];
+            }
+
+
+            //push
+            s.push(i);
+
+            
+        }
+        for(int i=0;i<arr.length;i++){
+                System.out.print(nxtGreater[i]+" ");
+            }
+
         
 
         
