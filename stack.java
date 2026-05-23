@@ -160,6 +160,66 @@ public class stack {
 
     }
 
+
+    public static boolean ParenthesisValid(String str){
+        Stack<Character> s=new Stack<>();
+
+        for(int i=0;i<str.length();i++){
+            char ch=str.charAt(i);
+
+            //opening
+            if(ch=='(' || ch=='{' || ch=='['){
+                s.push(ch);
+
+            }else{
+                if(s.isEmpty()){
+                    return false;
+                }
+
+                if((s.peek()=='(' && ch==')') || s.peek()=='{' && ch=='}'|| s.peek()=='[' && ch==']'){
+                    s.pop();
+                }else{
+                    return false;
+                }
+            }
+        }
+        if(s.isEmpty()){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public static boolean ParenthesisIsDuplicate(String str){
+        Stack<Character> s=new Stack<>();
+
+        for(int i=0;i<str.length();i++){
+            char ch=str.charAt(i);
+
+            //closing condn
+            if(ch==')'){
+                int count=0;
+                while(!s.isEmpty() && s.peek()!='('){
+                    s.pop();
+                    count++;
+                }
+                if(count<1){
+                    return true; //duplicate exists
+
+                }else{
+                    s.pop();//opening pair
+                }
+            
+            }
+            //opening condition
+            else{
+            s.push(ch);
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         //we can create stack using prebuilt stack library 
         //Stack<Integer>s=new Stack<>();
@@ -205,36 +265,58 @@ public class stack {
         //     System.out.print(span[i]+" ");
         // }
 
-        int arr[]={6,8,0,1,3};
-
-        Stack<Integer> s=new Stack<>();
-
-        int nxtGreater[]=new int[arr.length];
-
-        for(int i=arr.length-1;i>=0;i--){
-            //while
-            while(!s.isEmpty()&& arr[s.peek()]<=arr[i]){
-                s.pop();
-            }
 
 
-            //ifelse
-            if(s.isEmpty()){
-                nxtGreater[i]=-1;
+        //NEXT LARGEST ELEMENT CODE
 
-            }else{
-                nxtGreater[i]=arr[s.peek()];
-            }
+        // int arr[]={6,8,0,1,3};
+
+        // Stack<Integer> s=new Stack<>();
+
+        // int nxtGreater[]=new int[arr.length];
+
+        // for(int i=arr.length-1;i>=0;i--){
+        //     //while
+        //     while(!s.isEmpty()&& arr[s.peek()]<=arr[i]){
+        //         s.pop();
+        //     }
 
 
-            //push
-            s.push(i);
+        //     //ifelse
+        //     if(s.isEmpty()){
+        //         nxtGreater[i]=-1;
+
+        //     }else{
+        //         nxtGreater[i]=arr[s.peek()];
+        //     }
+
+
+        //     //push
+        //     s.push(i);
 
             
-        }
-        for(int i=0;i<arr.length;i++){
-                System.out.print(nxtGreater[i]+" ");
-            }
+        // }
+        // for(int i=0;i<arr.length;i++){
+        //         System.out.print(nxtGreater[i]+" ");
+        //     }
+
+
+    //VALID PARENTHESIS 
+
+    // String str="(){}[]({})";
+
+    // System.out.println(ParenthesisValid(str));
+
+
+    //Duplicate Parenthesis
+
+    String str="((a+b))";
+    String str2="(a-b)";
+
+    System.out.println(ParenthesisIsDuplicate(str2));
+    System.out.println(ParenthesisIsDuplicate(str));
+
+
 
         
 
