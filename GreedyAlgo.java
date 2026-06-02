@@ -163,37 +163,84 @@ public class GreedyAlgo {
 
         //JOB SEQUENCING PROBLEM
          
-        int jobsinfo[][]={{4,20},{1,10},{1,40},{1,30}};
+        // int jobsinfo[][]={{4,20},{1,10},{1,40},{1,30}};
 
-        ArrayList<Job> jobs=new ArrayList<>();
+        // ArrayList<Job> jobs=new ArrayList<>();
         
-        for(int i=0;i<jobsinfo.length;i++){
-            jobs.add(new Job(i,jobsinfo[i][0],jobsinfo[i][1]));
+        // for(int i=0;i<jobsinfo.length;i++){
+        //     jobs.add(new Job(i,jobsinfo[i][0],jobsinfo[i][1]));
 
-        }
+        // }
 
-        Collections.sort(jobs,(obj1,obj2)->obj2.profit-obj1.profit);//arrange objects in descending order of profit
+        // Collections.sort(jobs,(obj1,obj2)->obj2.profit-obj1.profit);//arrange objects in descending order of profit
         
 
-        ArrayList<Integer> seq=new ArrayList<>();
-        int time=0;
-        for(int i=0;i<jobs.size();i++){
-            Job curr=jobs.get(i);
+        // ArrayList<Integer> seq=new ArrayList<>();
+        // int time=0;
+        // for(int i=0;i<jobs.size();i++){
+        //     Job curr=jobs.get(i);
 
-            if(curr.deadline>time){
-                seq.add(curr.id);
-                time++;
+        //     if(curr.deadline>time){
+        //         seq.add(curr.id);
+        //         time++;
+        //     }
+        // }
+
+        // System.out.println("Max Jobs="+seq.size());
+
+        // for(int i=0;i<seq.size();i++){
+        //     System.out.print(seq.get(i)+" ");
+        // }
+
+
+        //CHOCOLA PROBLEM
+        int n=4;
+        int m=6;
+
+        Integer costVer[]={2,1,3,1,4};//m-1
+        Integer costHor[]={4,1,2};//n-1
+
+        Arrays.sort(costVer,Collections.reverseOrder());
+        Arrays.sort(costHor,Collections.reverseOrder());
+
+        //current horizontal and vertical cuts
+        int h=0;
+        int v=0;
+
+        int hp=1,vp=1;
+
+        int cost=0;
+
+        while(h<costHor.length&&v<costVer.length){
+            //vertical <horizontal
+            if(costVer[v]<=costHor[h]){//horizontal cut
+                cost+=(costHor[h]*vp);
+                hp++;
+                h++;
+            }else{
+                cost+=(costVer[v]*hp);
+                vp++;
+                v++;
             }
         }
 
-        System.out.println("Max Jobs="+seq.size());
 
-        for(int i=0;i<seq.size();i++){
-            System.out.print(seq.get(i)+" ");
+        while(h<costHor.length){
+            cost+=(costHor[h]*vp);
+            hp++;
+            h++;
+
         }
 
 
+        while(v<costVer.length){
+            cost+=(costVer[v]*hp);
+            vp++;
+            v++;
 
+        }
+
+        System.out.println("Min cost of cuts= "+cost);
     
     }
     
