@@ -46,6 +46,10 @@ public class BinaryTress2 {
 
         return ls+rs+root.data;
     }
+
+    public static int TreeDiameter(Node root){
+        
+    }
     public static void main(String[] args) {
            /*      1
                  /    \
