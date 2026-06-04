@@ -1,3 +1,6 @@
+import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 public class BinaryTress {
     static class Node{
         int data;
@@ -64,6 +67,45 @@ public class BinaryTress {
 
         }
 
+        public static void levelOrder(Node root){
+            if(root==null){
+                return;
+            }
+
+            Queue<Node> q=new LinkedList<>();
+            q.add(root);
+            q.add(null);
+
+            while(!q.isEmpty()){
+                Node currnode=q.remove();
+
+                if(currnode==null){
+                    System.out.println();
+                    if(q.isEmpty()){
+                        break;
+                    }else{
+
+                        q.add(null);
+                    }
+                }else{
+                    System.out.print(currnode.data+" ");
+                    if(currnode.left!=null){
+                        q.add(currnode.left);
+                    }
+
+                    if(currnode.right!=null){
+                        q.add(currnode.right);
+                    }
+                }
+            }
+
+
+
+        }
+
+
+       
+
     }
 
 
@@ -83,6 +125,10 @@ public class BinaryTress {
         System.out.println();
         System.out.println("Postorder:");
         tree.postorder(root);
+
+        System.out.println();
+        System.out.println("LevelOrder");
+        tree.levelOrder(root);
 
     }
     
