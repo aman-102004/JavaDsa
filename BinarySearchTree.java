@@ -167,6 +167,8 @@ public class BinarySearchTree {
 
 
     }
+
+
     public static void preorder(Node root){
             if(root==null){
                 // System.out.print(-1+" ");
@@ -179,33 +181,200 @@ public class BinarySearchTree {
 
         }
     
-    public static void main(String[] args) {
-        int values[]={8,5,3,1,4,6,10,11,14};
-        Node root=null;
+    public static Node createBST(int arr[],int st,int end){
+       
+        if(st>end){
+            return null;
 
-        for(int i=0;i<values.length;i++){
-            root=insert(root,values[i]);
+        }
+       
+        int mid=(st+end)/2;
+        Node root=new Node(arr[mid]);
+        root.left=createBST(arr, st, mid-1);
+        root.right=createBST(arr,mid+1, end);
+
+        return root;
+    }
+
+    public static Node createBST(ArrayList<Integer> inorder,int st,int end){
+       
+        if(st>end){
+            return null;
+
+        }
+       
+        int mid=(st+end)/2;
+        Node root=new Node(inorder.get(mid));
+        root.left=createBST(inorder, st, mid-1);
+        root.right=createBST(inorder,mid+1, end);
+
+        return root;
+    }
+
+    public static void getInorder(Node root,ArrayList<Integer> inorder){
+        if(root==null){
+            return;
         }
 
-        inorder(root);
+        getInorder(root.left, inorder);
+        inorder.add(root.data);
+        getInorder(root.right, inorder);
+    }
+    public static Node balancedBST(Node root){//O(n)
+        //inorder seq
+        ArrayList<Integer> inorder=new ArrayList<>();
+        getInorder(root,inorder);
 
-        System.out.println();
-        System.out.println(Search(root, 8));
 
-        // delete(root, 1);
+        //creation of bst from it
+        root=createBST(inorder, 0, inorder.size()-1);
+
+        return root;
+
+
+    }
+
+    static class Info{
+        boolean isBST;
+        int size;
+        int min;
+        int max;
+
+        public Info(boolean isBST,int size,int min,int max){
+            this.isBST=isBST;
+            this.size=size;
+            this.min=min;
+            this.max=max;
+        }
+
+    }
+        public static int maxBST=0;
+        public static Info largestBST(Node root){
+
+            if(root==null){
+                return new Info(true,0,Integer.MAX_VALUE,Integer.MIN_VALUE);
+            }
+
+            Info leftinfo=largestBST(root.left);
+            Info rightinfo=largestBST(root.right);
+
+            int size=leftinfo.size + rightinfo.size + 1;
+            int min=Math.min(root.data,Math.min(leftinfo.min , rightinfo.min));
+            int max=Math.max(root.data,Math.max(leftinfo.max,rightinfo.max));
+
+            if(root.data <=leftinfo.max || root.data>=rightinfo.min){
+                return new Info(false,size,min,max);
+
+            }
+
+            if(leftinfo.isBST && rightinfo.isBST){
+                maxBST=Math.max(maxBST,size);
+                return new Info(true,size,min,max);
+            }
+
+            return new Info(false,size,min,max);
+
+
+        }
+
+    
+    public static void main(String[] args) {
+        // int values[]={8,5,3,1,4,6,10,11,14};
+        // Node root=null;
+
+        // for(int i=0;i<values.length;i++){
+        //     root=insert(root,values[i]);
+        // }
+
         // inorder(root);
 
-        printInRange(root, 5, 10);
-        System.out.println();
+        // System.out.println();
+        // System.out.println(Search(root, 8));
 
-        printRoot2leaf(root,new ArrayList<>());
+        // // delete(root, 1);
+        // // inorder(root);
 
-        System.out.println(isValidBST(root, null, null));
+        // printInRange(root, 5, 10);
+        // System.out.println();
 
-        MirrorBST(root);
-        preorder(root);
+        // printRoot2leaf(root,new ArrayList<>());
+
+        // System.out.println(isValidBST(root, null, null));
+
+        // MirrorBST(root);
+        // preorder(root);
+
+        // int arr[]={3,5,6,8,10,11,12};
+
+        // Node root=createBST(arr, 0, arr.length-1);
+
+        // preorder(root);
+        
 
 
+        //binary search tree to balanced binary search tree
+                //     8
+                //    / \
+                //    6  10
+                //   /    \
+                //  5      11
+                // /        \
+                // 3         12
+
+
+        // Node root=new Node(8);
+        // root.left=new Node(6);
+        // root.left.left=new Node(5);
+        // root.left.left.left=new Node(3);
+
+        // root.right=new Node(10);
+        // root.right.right=new Node(11);
+        // root.right.right.right=new Node(12);
+
+        // // expected outcome
+
+        //         //     8
+        //         //    / \
+        //         //   5   11
+        //         //  / \   / \ 
+        //         // 3   6 10  12
+    
+        // root= balancedBST(root);
+        // preorder(root);
+        
+
+        //size of largest BST in a tree
+
+        //                50
+        //         //    / \
+        //         //   30   60
+        //         //  / \   / \ 
+        //         // 5   20 45  70
+        //                        /\
+        //                       65 80                              
+
+
+
+
+        Node root=new Node(50);
+        root.left=new Node(5);
+        root.left.left=new Node(30);
+        root.left.right=new Node(20);
+
+        root.right=new Node(60);
+        root.right.left=new Node(45);
+        root.right.right=new Node(70);
+        root.right.right.left=new Node(65);
+        root.right.right.right= new Node (80);
+
+
+        Info info=largestBST(root);
+
+        System.out.println(maxBST);
+
+
+
+    
     }
     
 }
