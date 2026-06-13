@@ -277,6 +277,23 @@ public class BinarySearchTree {
 
         }
 
+      public static int sumInRange(Node root, int l, int r) {
+            if(root == null) {
+                return 0;
+            }
+
+            if(root.data < l) {
+                return sumInRange(root.right, l, r);
+            }
+
+            if(root.data > r) {
+                return sumInRange(root.left, l, r);
+            }
+
+            return root.data
+                + sumInRange(root.left, l, r)
+                + sumInRange(root.right, l, r);
+        }
     
     public static void main(String[] args) {
         // int values[]={8,5,3,1,4,6,10,11,14};
@@ -356,22 +373,34 @@ public class BinarySearchTree {
 
 
 
-        Node root=new Node(50);
+        // Node root=new Node(50);
+        // root.left=new Node(30);
+        // root.left.left=new Node(5);
+        // root.left.right=new Node(20);
+
+        // root.right=new Node(60);
+        // root.right.left=new Node(45);
+        // root.right.right=new Node(70);
+        // root.right.right.left=new Node(65);
+        // root.right.right.right= new Node (80);
+
+
+        // Info info=largestBST(root);
+
+        // System.out.println(maxBST);
+
+
+        Node root=new Node(8);
         root.left=new Node(5);
-        root.left.left=new Node(30);
-        root.left.right=new Node(20);
+        root.left.left=new Node(3);
+        root.left.right=new Node(6);
 
-        root.right=new Node(60);
-        root.right.left=new Node(45);
-        root.right.right=new Node(70);
-        root.right.right.left=new Node(65);
-        root.right.right.right= new Node (80);
+        root.right=new Node(11);
+        
+        root.right.right=new Node(20);
 
-
-        Info info=largestBST(root);
-
-        System.out.println(maxBST);
-
+        System.out.println(sumInRange(root, 5, 11));
+      
 
 
     
