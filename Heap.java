@@ -63,21 +63,45 @@ public class Heap {
 
         //CBT=completely filled binary treee is the tree in which rach noide is filled with max 2 children and in case if it is not so then elements are filled from left to right
         
-        int pts[][]={{3,3},{5,-1},{-2,4}};
-        int k=2;
 
-        PriorityQueue<Point> pq=new PriorityQueue<>();
 
-        for(int i=0;i<pts.length;i++){
-            int distSq=pts[i][0]*pts[i][0] + pts[i][1]*pts[i][1];
-            pq.add(new Point(pts[i][0],pts[i][1],distSq,i));
+        //SELECT K NEAREST POINTS
+        // int pts[][]={{3,3},{5,-1},{-2,4}};
+        // int k=2;
+
+        // PriorityQueue<Point> pq=new PriorityQueue<>();
+
+        // for(int i=0;i<pts.length;i++){
+        //     int distSq=pts[i][0]*pts[i][0] + pts[i][1]*pts[i][1];
+        //     pq.add(new Point(pts[i][0],pts[i][1],distSq,i));
+        // }
+
+        // //nearest k cars
+
+        // for(int i=0;i<k;i++){
+        //     System.out.println("C"+pq.remove().idx);
+        // }
+
+        //CONNECT ROPES WITH MINUMUM LENGTH
+        int ropes[]={2,3,3,4,6};
+
+        PriorityQueue<Integer> pq=new PriorityQueue<>();
+        for(int i=0;i<ropes.length;i++){
+            pq.add(ropes[i]);
         }
 
-        //nearest k cars
+        int cost=0;
 
-        for(int i=0;i<k;i++){
-            System.out.println("C"+pq.remove().idx);
+        while(pq.size()>1){
+            int min=pq.remove();
+            int min2=pq.remove();
+            cost+=min+min2;
+            pq.add(min+min2);
+
         }
+
+        System.out.println("final Min Cost is :"+ cost);
+
     }
     
 }
