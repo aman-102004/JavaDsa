@@ -12,6 +12,7 @@ public class Hashing {
         hm.put("US",50);
         hm.put("Indonesia",6);
         hm.put("Nepal",5);
+        hm.put("Australia",400);
 
         // System.out.println(hm);
 
