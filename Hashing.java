@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.HashMap;
 public class Hashing {
 
     public static boolean isAnagram(String s,String t){
@@ -26,6 +27,26 @@ public class Hashing {
             
         }
         return map.isEmpty();
+    }
+
+    public static String getStart(HashMap<String,String> tickets){
+        HashMap<String,String> revMap=new HashMap<>();
+        //String key:tickets.keySet()- ShortForm for iterating in a hashmap
+        for(String key:tickets.keySet()){
+            revMap.put(tickets.get(key),key);
+
+        }
+
+        for(String key:tickets.keySet()){
+            if(!revMap.containsKey(key)){
+                return key;//Startinf point
+
+            }
+        }
+
+        return null;
+
+
     }
     public static void main(String[] args) {
         //create
@@ -98,10 +119,70 @@ public class Hashing {
 
 
         //Valid Anagrams(O(n));
-        String s="racer";
-        String t="caret";
-        System.out.println(isAnagram(s, t));
+        // String s="racer";
+        // String t="caret";
+        // System.out.println(isAnagram(s, t));
 
+
+        //Iternary for tickets O(n)
+
+        // HashMap<String,String> tickets=new HashMap<>();
+        // tickets.put("Chennai","Bengaluru");
+        // tickets.put("Mumbai","Delhi");
+        // tickets.put("Goa","Chennai");
+        // tickets.put("Delhi","Goa");
+
+        // String start=getStart(tickets);
+        // System.out.print(start);
+        // for(String key : tickets.keySet()){
+        //     System.out.print("->"+tickets.get(start));
+        //     start=tickets.get(start);
+        // }
+        // System.out.println();
+
+
+        //Largest Surbarray with Sum=0;
+
+        // int arr[]={15,-2,2,-8,1,7,10,23};
+
+        // HashMap<Integer,Integer> map=new HashMap<>();
+        // //(sum,idx);
+
+        // int sum=0;
+        // int len=0;
+        // //sum of an array i+1 to j is sum of j -sum of i;
+        // for(int j=0;j<arr.length;j++){
+        //     sum+=arr[j];
+        //     if(map.containsKey(sum)){
+        //         len=Math.max(len,j-map.get(sum));
+        //     }else{
+        //         map.put(sum,j);
+        //     }
+        // }
+
+        // System.out.println("Largest subarray is:"+len);
+
+
+        //Subarray wiwth sum=k
+        int arr[]={10,2,-2,-20,10};
+        int k=-10;
+        HashMap<Integer,Integer> map=new HashMap<>();
+        //(sum,count)
+        //added 0,1 as when sum-k=0 means whole subarray sum is equal to i 
+        map.put(0,1);
+        int sum=0;
+        int ans=0;
+        //sum of an array i to j is sum of j - sum of i-1 so sum of j-k=sum of i;
+        for(int j=0;j<arr.length;j++){
+            sum+=arr[j];
+            if(map.containsKey(sum-k)){
+                ans+=map.get(sum-k);
+
+            }
+            map.put(sum,map.getOrDefault(sum,0)+1);
+        }
+
+        System.out.println(ans);
 
 
     }

@@ -20,10 +20,10 @@ public class HashSets {
     //     System.out.println(hs.size());
     // }
 
-    HashSet<String> cities =new HashSet<>();
-    cities.add("Delhi");
-    cities.add("Mumbai");
-    cities.add("Noida");
+    // HashSet<String> cities =new HashSet<>();
+    // cities.add("Delhi");
+    // cities.add("Mumbai");
+    // cities.add("Noida");
 
     //Iterating in a HashSet using Iterator interafce
 
@@ -35,9 +35,47 @@ public class HashSets {
 
     //Iterating using advanced for loop
 
-    for(String city:cities){
-        System.out.println(city);
+    // for(String city:cities){
+    //     System.out.println(city);
+    // }
+
+    int arr1[] ={7,3,9};
+    int arr2[] ={6,3,9,2,9,4};
+
+    HashSet<Integer> set=new HashSet<>();
+
+    //union
+    for(int i=0;i<arr1.length;i++){
+        set.add(arr1[i]);
     }
+
+    for(int i=0;i<arr2.length;i++){
+        set.add(arr2[i]);
+    }
+
+    System.out.println("union=" + set.size());
+
+
+
+    //Intersection of elements
+    set.clear();
+
+    for(int i=0;i<arr1.length;i++){
+        set.add(arr1[i]);
+    }
+    int count=0;
+    for(int i=0;i<arr2.length;i++){
+        if(set.contains(arr2[i])){
+            count++;
+            set.remove(arr2[i]);
+        }
+    }
+
+    System.out.println("Intersection = "+count);
+
+    
+
+
 
 
 
