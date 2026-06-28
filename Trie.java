@@ -3,11 +3,15 @@ public class Trie {
     static class Node{
         Node children[]=new Node[26];
         boolean eow=false;
+        //freq variable only for prefix probblem
+        int freq;
 
         public Node(){
             for(int i=0;i<26;i++){
                 children[i]=null;
             }
+            freq=1;
+
         }
     }
      
@@ -21,6 +25,9 @@ public class Trie {
             int idx=word.charAt(level)-'a';
             if(curr.children[idx]==null){
                 curr.children[idx]=new Node();
+            }
+            else{
+                curr.children[idx].freq++;
             }
             curr=curr.children[idx];
                  
@@ -59,7 +66,39 @@ public class Trie {
         }
         return false;
     }
+
+    public static void FindPrefix(Node root,String ans){
+       if(root==null){
+        return;
+       }
+
+       if(root.freq==1){
+        System.out.println(ans);
+        return;
+       }
+        for(int i=0;i<26;i++){
+            if(root.children[i]!=null){
+                FindPrefix(root.children[i], ans+(char)(i+'a'));
+            }
+        }
+
+    }
+
+    public static boolean startsWith(String key){
+        Node curr=root;
+        for(int i=0;i<key.length();i++){
+            int idx=key.charAt(i)-'a';
+            if(curr.children[idx]==null){
+                return false;
+
+            }
+            curr=curr.children[idx];
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
+        //Insert
         // String words[]={"the","a","there","their","any","thee"};
         // for(int i=0;i<words.length;i++){
         //     insert(words[i]);
@@ -69,14 +108,41 @@ public class Trie {
         // System.out.println(search("thereeeee"));
 
 
-        String arr[]={"i","like","sam","samsung","mobile","ice"};
-        for(int i=0;i<arr.length;i++){
-            insert(arr[i]);
+        //Word Break Problem
+        // String arr[]={"i","like","sam","samsung","mobile","ice"};
+        // for(int i=0;i<arr.length;i++){
+        //     insert(arr[i]);
 
+        // }
+
+        // String key="ilikesamsung";
+
+        // System.out.println(wordBreak(key));
+
+
+        //Prefix Problem
+        //we will add a new variable inside node class to track frequecny
+        //wherever the freq starts to come 1 that whole string till there will be the answer
+        // String arr[]={"zebra","dog","duck","dove"};
+        // for(int i=0;i<arr.length;i++){
+        //     insert(arr[i]);
+        // }
+
+        // root.freq=-1;
+
+        // FindPrefix(root,"");
+
+
+        //Starts with prefix problem
+        String words[]={"apple","app","mango","man","work"};
+
+        for(int i=0;i<words.length;i++){
+            insert(words[i]);
         }
 
-        String key="ilikesamsung";
+        System.out.println(startsWith("m"));
 
-        System.out.println(wordBreak(key));
+
     }
 }
+//In trie Every Node contains the data of its childrens
