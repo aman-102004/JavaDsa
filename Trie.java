@@ -97,6 +97,46 @@ public class Trie {
         return true;
     }
 
+    public static int countNodes(Node root){
+        if(root==null){
+            return 0;
+
+        }
+        int count=0;
+        for(int i=0;i<26;i++){
+            if(root.children[i]!=null){
+                count+=countNodes(root.children[i]);
+            }
+        }
+
+        return count+1;
+
+    }
+
+    public static String ans="";
+    public static void longestWord(Node root,StringBuilder temp){
+        if(root==null){
+            return ;
+        }
+
+        for(int i=0;i<26;i++){//answer will automatically be in lexographical order as we have 26 alphabets and we are starting from 0 so if a word with same length comes we are never comparing it
+            if(root.children[i]!=null && root.children[i].eow==true){
+                char ch=(char)(i+'a');
+                temp.append(ch);
+
+                if(temp.length()>ans.length()){
+                    ans=temp.toString();
+                }
+
+                longestWord(root.children[i], temp);
+                //backtrack;
+                temp.deleteCharAt(temp.length()-1);
+
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
         //Insert
         // String words[]={"the","a","there","their","any","thee"};
@@ -134,14 +174,36 @@ public class Trie {
 
 
         //Starts with prefix problem
-        String words[]={"apple","app","mango","man","work"};
+        // String words[]={"apple","app","mango","man","work"};
 
+        // for(int i=0;i<words.length;i++){
+        //     insert(words[i]);
+        // }
+
+        // System.out.println(startsWith("m"));
+
+
+        //Unique SubStrings
+        //Approach is find al the prefix of all suffix make a trie and then count the number of nodes in the trie as trie automatically stores only the unqiue prefixes
+
+        // String str="ababa";
+        // //suffic->insert in trie;
+        // for(int i=0;i<str.length();i++){
+        //     String suffix=str.substring(i);
+        //     insert(suffix);
+        // }
+
+        // //counting nodes
+        // System.out.println(countNodes(root));
+
+
+        //Longest Word With all prefixes
+        String words[]={"a","banana","app","appl","ap","apply"};
         for(int i=0;i<words.length;i++){
             insert(words[i]);
         }
-
-        System.out.println(startsWith("m"));
-
+        longestWord(root, new StringBuilder(""));
+        System.out.println(ans);
 
     }
 }
