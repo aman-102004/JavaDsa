@@ -86,6 +86,7 @@ public class Graph1 {
         for(int i=0;i<graph[curr].size();i++){
             Edge e=graph[curr].get(i);
             if(!vis[e.desc]){
+                
                 dfs(graph,e.desc, vis);
             }
         }
@@ -195,3 +196,9 @@ public class Graph1 {
 
 //bfs visited nearest neighbours first
 //dfs visit adjacent neighbours first
+
+
+//connected Components
+//if wherever we want to check the number of components in a graph(like if there are dijoint graphs 2or 3 graaphs not connected with each other )
+//then we just have to conver the dfs/bfs into a util function and call them into a differet function using a loop 
+//the number of times bfs/dfs is called that is the number of component in taht graph
