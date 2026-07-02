@@ -109,6 +109,124 @@
 
 // }
 
+// import java.util.*;
+// import java.util.Queue;
+// import java.util.LinkedList;
+// public class Graph2{
+//     // Edge Class
+//     static class Edge {
+//         int src;
+//         int dest;
+//         Edge(int s, int d) {
+//             this.src = s;
+//             this.dest = d;
+//         }
+//     }
+//     // Create Graph
+//     public static void createGraph(ArrayList<Edge>[] graph) {
+
+//         for (int i = 0; i < graph.length; i++) {
+//             graph[i] = new ArrayList<>();
+//         }
+//         // 0 -> 1, 2
+//         graph[0].add(new Edge(0, 1));
+//         graph[0].add(new Edge(0, 2));
+
+//         // 1 -> 0, 3
+//         graph[1].add(new Edge(1, 0));
+//         graph[1].add(new Edge(1, 3));
+
+//         // 2 -> 0, 4
+//         graph[2].add(new Edge(2, 0));
+//         graph[2].add(new Edge(2, 4));
+
+//         // 3 -> 1, 4
+//         graph[3].add(new Edge(3, 1));
+//         graph[3].add(new Edge(3, 4));
+
+//         // 4 -> 2, 3
+//         graph[4].add(new Edge(4, 2));
+//         graph[4].add(new Edge(4, 3));
+//     }
+
+
+//     //we will be using modified bfs
+//     //we will be using color method to identify whether a graph is bipartite or not
+//     public static boolean isBipartite(ArrayList<Edge>[] graph){//O(v+e)
+//         int col[]=new int[graph.length];
+//         for(int i=0;i<col.length;i++){
+//             col[i]=-1;//no color
+//         }
+//         Queue<Integer> q=new LinkedList();
+
+//         for(int i=0;i<graph.length;i++){
+//             if(col[i]==-1){//BFS PERFORM
+//                 q.add(i);
+//                 col[i]=0;//yellow color;
+//                 while(!q.isEmpty()){
+//                     int curr=q.remove();
+
+//                     for(int j=0;j<graph[curr].size();j++){
+//                         Edge e=graph[curr].get(j);
+//                         if(col[e.dest]==-1){
+//                             int nextCol=col[curr]==0?1:0;
+//                             col[e.dest]=nextCol;
+//                             q.add(e.dest);
+//                         }else if(col[e.dest]==col[curr]){
+//                             return false;//NOT BIPARTITE
+
+//                         }
+//                     }
+//                 }
+
+//             }
+//         }
+//         return true;
+
+//     }
+//     public static void main(String args[]) {
+//         //if graph is not a cyclic graph then its a bipartite graph by default
+//         /*
+
+//                 0 -------- 2
+//                /            \
+//               /              \
+//              1                4
+//               \              /
+//                \            /
+//                 ---- 3---- /
+
+
+//             FALSE
+
+//         */
+
+
+
+//         int V = 5;
+
+//         ArrayList<Edge>[] graph = new ArrayList[V];
+//         createGraph(graph);
+
+//         System.out.println(isBipartite(graph));
+
+
+
+//         //if acyclic=true;
+//         //if even cycle=true;
+//         //if odd cycle =false;
+
+        
+
+//     }
+
+// }
+
+
+
+//CYCLE DETECTION FOR DIRECTED GRAPH
+//WE WILL BE USING AN EXTRA EXPLICIT STACK TO KEEP TRACK OF THE NODES THAT ARE THERE
+
 import java.util.*;
 import java.util.Queue;
 import java.util.LinkedList;
@@ -128,93 +246,65 @@ public class Graph2{
         for (int i = 0; i < graph.length; i++) {
             graph[i] = new ArrayList<>();
         }
-        // 0 -> 1, 2
-        graph[0].add(new Edge(0, 1));
-        graph[0].add(new Edge(0, 2));
+       graph[0].add(new Edge(0,2));
 
-        // 1 -> 0, 3
-        graph[1].add(new Edge(1, 0));
-        graph[1].add(new Edge(1, 3));
+       graph[1].add(new Edge(1, 0));
 
-        // 2 -> 0, 4
-        graph[2].add(new Edge(2, 0));
-        graph[2].add(new Edge(2, 4));
+       graph[2].add(new Edge(2, 3));
 
-        // 3 -> 1, 4
-        graph[3].add(new Edge(3, 1));
-        graph[3].add(new Edge(3, 4));
-
-        // 4 -> 2, 3
-        graph[4].add(new Edge(4, 2));
-        graph[4].add(new Edge(4, 3));
+       graph[3].add(new Edge(3, 0));
     }
 
 
-    //we will be using modified bfs
-    //we will be using color method to identify whether a graph is bipartite or not
-    public static boolean isBipartite(ArrayList<Edge>[] graph){//O(v+e)
-        int col[]=new int[graph.length];
-        for(int i=0;i<col.length;i++){
-            col[i]=-1;//no color
-        }
-        Queue<Integer> q=new LinkedList();
+    //DFS IS CYCLE
+    //we will be using another array of stack to keep track of call stack
+
+    public static boolean isCycle(ArrayList<Edge>[] graph){
+        boolean vis[]=new boolean[graph.length];
+        boolean stack[]=new boolean[graph.length];
 
         for(int i=0;i<graph.length;i++){
-            if(col[i]==-1){//BFS PERFORM
-                q.add(i);
-                col[i]=0;//yellow color;
-                while(!q.isEmpty()){
-                    int curr=q.remove();
-
-                    for(int j=0;j<graph[curr].size();j++){
-                        Edge e=graph[curr].get(j);
-                        if(col[e.dest]==-1){
-                            int nextCol=col[curr]==0?1:0;
-                            col[e.dest]=nextCol;
-                            q.add(e.dest);
-                        }else if(col[e.dest]==col[curr]){
-                            return false;//NOT BIPARTITE
-
-                        }
-                    }
-                }
-
+            if(!vis[i]){
+               if( isCycleUtil(graph,i,vis,stack)){
+                    return true;
+               }
             }
         }
-        return true;
+        return false;
+
 
     }
+
+    public static boolean isCycleUtil(ArrayList<Edge>[] graph,int curr,boolean[] vis,boolean[] stack){
+         vis[curr]=true;
+         stack[curr]=true;
+
+         for(int i=0;i<graph[curr].size();i++){
+            Edge e=graph[curr].get(i);
+            if(stack[e.dest]){//cycle condition
+                return true;
+            }
+
+            if(!vis[e.dest] && isCycleUtil(graph,e.dest,vis,stack)){
+                return true;
+            }
+
+
+         }
+         stack[curr]=false;
+         return false;
+    }
+    
     public static void main(String args[]) {
-        //if graph is not a cyclic graph then its a bipartite graph by default
-        /*
+       
 
-                0 -------- 2
-               /            \
-              /              \
-             1                4
-              \              /
-               \            /
-                ---- 3---- /
-
-
-            FALSE
-
-        */
-
-
-
-        int V = 5;
-
+        int V = 4;
+        @SuppressWarnings("unchecked")
         ArrayList<Edge>[] graph = new ArrayList[V];
         createGraph(graph);
 
-        System.out.println(isBipartite(graph));
+        System.out.println(isCycle(graph));
 
-
-
-        //if acyclic=true;
-        //if even cycle=true;
-        //if odd cycle =false;
 
         
 
