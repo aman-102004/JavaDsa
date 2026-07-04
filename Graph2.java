@@ -227,83 +227,336 @@
 //CYCLE DETECTION FOR DIRECTED GRAPH
 //WE WILL BE USING AN EXTRA EXPLICIT STACK TO KEEP TRACK OF THE NODES THAT ARE THERE
 
+// import java.util.*;
+// import java.util.Queue;
+// import java.util.LinkedList;
+// public class Graph2{
+//     // Edge Class
+//     static class Edge {
+//         int src;
+//         int dest;
+//         Edge(int s, int d) {
+//             this.src = s;
+//             this.dest = d;
+//         }
+//     }
+//     // Create Graph
+//     public static void createGraph(ArrayList<Edge>[] graph) {
+
+//         for (int i = 0; i < graph.length; i++) {
+//             graph[i] = new ArrayList<>();
+//         }
+//        graph[0].add(new Edge(0,2));
+
+//        graph[1].add(new Edge(1, 0));
+
+//        graph[2].add(new Edge(2, 3));
+
+//        graph[3].add(new Edge(3, 0));
+//     }
+
+
+//     //DFS IS CYCLE
+//     //we will be using another array of stack to keep track of call stack
+
+//     public static boolean isCycle(ArrayList<Edge>[] graph){
+//         boolean vis[]=new boolean[graph.length];
+//         boolean stack[]=new boolean[graph.length];
+
+//         for(int i=0;i<graph.length;i++){
+//             if(!vis[i]){
+//                if( isCycleUtil(graph,i,vis,stack)){
+//                     return true;
+//                }
+//             }
+//         }
+//         return false;
+
+
+//     }
+
+//     public static boolean isCycleUtil(ArrayList<Edge>[] graph,int curr,boolean[] vis,boolean[] stack){
+//          vis[curr]=true;
+//          stack[curr]=true;
+
+//          for(int i=0;i<graph[curr].size();i++){
+//             Edge e=graph[curr].get(i);
+//             if(stack[e.dest]){//cycle condition
+//                 return true;
+//             }
+
+//             if(!vis[e.dest] && isCycleUtil(graph,e.dest,vis,stack)){
+//                 return true;
+//             }
+
+
+//          }
+//          stack[curr]=false;
+//          return false;
+//     }
+    
+//     public static void main(String args[]) {
+       
+
+//         int V = 4;
+//         @SuppressWarnings("unchecked")
+//         ArrayList<Edge>[] graph = new ArrayList[V];
+//         createGraph(graph);
+
+//         System.out.println(isCycle(graph));
+
+
+        
+
+//     }
+
+// }
+
+
+//TOPOLOGICAL SORT(DEPENDENCY SORTING)
+//USING DFS AND A STACK
+// import java.util.*;
+// import java.util.Queue;
+// import java.util.LinkedList;
+// public class Graph2 {
+
+//     static class Edge {
+//         int src;
+//         int dest;
+//         Edge(int s, int d) {
+//             this.src = s;
+//             this.dest = d;
+//         }
+//     }
+//     static void createGraph(ArrayList<Edge>[] graph) {
+
+//         for (int i = 0; i < graph.length; i++) {
+//             graph[i] = new ArrayList<>();
+//         }
+//         // 2 -> 3
+
+//         // graph[0].add(new Edge(0, 3)); only added this for all paths code
+//         graph[2].add(new Edge(2, 3));
+
+//         // 3 -> 1
+//         graph[3].add(new Edge(3, 1));
+//         // 4 -> 0, 1
+//         graph[4].add(new Edge(4, 0));
+
+//         graph[4].add(new Edge(4, 1));
+
+//         // 5 -> 0, 2
+//         graph[5].add(new Edge(5, 0));
+//         graph[5].add(new Edge(5, 2));
+
+//     }
+
+    //topological sort using dfs
+    // public static void topologicalSort(ArrayList<Edge>[] graph){ 
+    //     boolean vis[]=new boolean[graph.length];
+    //     Stack<Integer> s=new Stack<>();
+
+    //     for(int i=0;i<graph.length;i++){
+    //         if(!vis[i]){
+    //             topologicalSortUtil(graph,i,vis,s);//dfs
+    //         }
+    //     }
+
+    //     while(!s.isEmpty()){
+    //         System.out.print(s.pop()+" ");
+    //     }
+
+    // }
+
+    // public static void topologicalSortUtil(ArrayList<Edge>[] graph,int curr,boolean[] vis,Stack<Integer> s){
+    //     vis[curr]=true;
+
+    //     for(int i=0;i<graph[curr].size();i++){
+    //         Edge e=graph[curr].get(i);
+    //         if(!vis[e.dest]){
+    //             topologicalSortUtil(graph, e.dest,vis,s);
+    //         }
+    //     }
+
+    //     s.push(curr);
+    // }
+
+
+//     //TOPOLOGICAL SORT USING BFS-KAHN's ALGO
+//     public static void calIndeg(ArrayList<Edge>[] graph,int[] indeg){
+//         for(int i=0;i<graph.length;i++){
+//             int v=i;
+//             for(int j=0;j<graph[v].size();j++){
+//                 Edge e=graph[v].get(j);
+//                 indeg[e.dest]++;
+//             }
+//         }
+
+//     }
+//     public static void topSort(ArrayList<Edge>[] graph){
+//         int indeg[]=new int[graph.length];
+//         calIndeg(graph, indeg);
+//         Queue<Integer>q=new LinkedList<>();
+        
+
+//         for(int i=0;i<indeg.length;i++){
+//             if(indeg[i]==0){
+//                 q.add(i);
+//             }
+//         }
+
+//         while(!q.isEmpty()){
+//             int curr=q.remove();
+//             System.out.print(curr+" ");
+
+//             for(int i=0;i<graph[curr].size();i++){
+//                 Edge e=graph[curr].get(i);
+//                 indeg[e.dest]--;
+//                 if(indeg[e.dest]==0){
+//                     q.add(e.dest);
+//                 }
+//             }
+            
+//         }
+
+//     }
+
+//     public static void printAllpath(ArrayList<Edge> graph[],int src,int dest,String path){//it has a exponential time complexity O(v^v)
+//         if(src==dest){
+//             System.out.println(path+dest);
+//             return;
+//         }
+
+//         for(int i=0;i<graph[src].size();i++){
+//             Edge e=graph[src].get(i);
+//             printAllpath(graph, e.dest, dest, path+src+"->");
+//         }
+
+        
+//     }
+//     public static void main(String[] args) {
+
+//         int V = 6;
+//         @SuppressWarnings("unchecked")
+//         ArrayList<Edge>[] graph = new ArrayList[V];
+//         createGraph(graph);
+
+//         // topSort(graph);
+
+//         int src=5;
+//         int dest=1;
+//         printAllpath(graph, src, dest,"");
+
+
+
+
+
+//     }
+
+// }
+
+
+
+
 import java.util.*;
-import java.util.Queue;
-import java.util.LinkedList;
 public class Graph2{
-    // Edge Class
     static class Edge {
         int src;
         int dest;
-        Edge(int s, int d) {
+        int wt;
+        Edge(int s, int d, int w) {
+
             this.src = s;
             this.dest = d;
+            this.wt = w;
         }
     }
-    // Create Graph
-    public static void createGraph(ArrayList<Edge>[] graph) {
+    static void createGraph(ArrayList<Edge>[] graph) {
 
-        for (int i = 0; i < graph.length; i++) {
+       for (int i = 0; i < graph.length; i++) {
             graph[i] = new ArrayList<>();
         }
-       graph[0].add(new Edge(0,2));
+        // 0 -> 1 (2)
+        graph[0].add(new Edge(0, 1, 2));
+        // 0 -> 2 (4)
+        graph[0].add(new Edge(0, 2, 4));
+        // 1 -> 3 (7)
+        graph[1].add(new Edge(1, 3, 7));
+        // 1 -> 2 (1)
+        graph[1].add(new Edge(1, 2, 1));
+        // 2 -> 4 (3)
+        graph[2].add(new Edge(2, 4, 3));
+        // 3 -> 5 (1)
+        graph[3].add(new Edge(3, 5, 1));
+        // 4 -> 3 (2)
+        graph[4].add(new Edge(4, 3, 2));
+        // 4 -> 5 (5)
+        graph[4].add(new Edge(4, 5, 5));
 
-       graph[1].add(new Edge(1, 0));
-
-       graph[2].add(new Edge(2, 3));
-
-       graph[3].add(new Edge(3, 0));
     }
+    static class Pair implements Comparable<Pair>{//this pair class to store node and its shortest distance
+        int n;
+        int path;
 
-
-    //DFS IS CYCLE
-    //we will be using another array of stack to keep track of call stack
-
-    public static boolean isCycle(ArrayList<Edge>[] graph){
-        boolean vis[]=new boolean[graph.length];
-        boolean stack[]=new boolean[graph.length];
-
+        public Pair(int n,int path){
+            this.n=n;
+            this.path=path;
+        }
+        @Override
+        public int compareTo(Pair p2){
+            return this.path-p2.path;//path based sorting
+        }
+    }
+    public static void dijistra(ArrayList<Edge>[] graph,int src){//time complexity=v+Elogv
+        int dist[]=new int[graph.length];//to store distance dist[i]=srt to i distance;
         for(int i=0;i<graph.length;i++){
-            if(!vis[i]){
-               if( isCycleUtil(graph,i,vis,stack)){
-                    return true;
-               }
+            if(i!=src){
+                dist[i]=Integer.MAX_VALUE;//intialise everydistance by infinitily leaving source
+            }
+        }  
+
+        boolean[] vis=new boolean[graph.length];
+
+        PriorityQueue<Pair> pq=new PriorityQueue<>();
+        pq.add(new Pair(src,0));//src to src pair
+
+        //now bfs loop
+        while(!pq.isEmpty()){
+            Pair curr=pq.remove();
+            if(!vis[curr.n]){
+                vis[curr.n]=true;
+                //now update the disatnce of the neigbours
+                for(int i=0;i<graph[curr.n].size();i++){
+                    Edge e=graph[curr.n].get(i);
+                    int u=e.src;
+                    int v=e.dest;
+                    int wt=e.wt;
+
+                    //updation from source to v
+                    if(dist[u]+wt<dist[v]){
+                        dist[v]=dist[u]+wt;
+                        pq.add(new Pair(v,dist[v]));
+                    }
+
+                }
             }
         }
-        return false;
 
-
+        //print all distances
+        for(int i=0;i<dist.length;i++){
+            System.out.print(dist[i]+" ");
+        }
+        System.out.println();
     }
-
-    public static boolean isCycleUtil(ArrayList<Edge>[] graph,int curr,boolean[] vis,boolean[] stack){
-         vis[curr]=true;
-         stack[curr]=true;
-
-         for(int i=0;i<graph[curr].size();i++){
-            Edge e=graph[curr].get(i);
-            if(stack[e.dest]){//cycle condition
-                return true;
-            }
-
-            if(!vis[e.dest] && isCycleUtil(graph,e.dest,vis,stack)){
-                return true;
-            }
-
-
-         }
-         stack[curr]=false;
-         return false;
-    }
-    
-    public static void main(String args[]) {
-       
-
-        int V = 4;
+    public static void main(String[] args) {
+        int V = 6;
         @SuppressWarnings("unchecked")
         ArrayList<Edge>[] graph = new ArrayList[V];
         createGraph(graph);
 
-        System.out.println(isCycle(graph));
+        int src=0;
+        dijistra(graph, src);
+
 
 
         
