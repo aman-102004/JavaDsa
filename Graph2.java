@@ -152,6 +152,7 @@
 
 //     //we will be using modified bfs
 //     //we will be using color method to identify whether a graph is bipartite or not
+
 //     public static boolean isBipartite(ArrayList<Edge>[] graph){//O(v+e)
 //         int col[]=new int[graph.length];
 //         for(int i=0;i<col.length;i++){
