@@ -176,3 +176,7 @@ public class Graph3{
 // Mark the destination as visited.
 // Add all edges from the newly visited vertex.
 // Repeat until all vertices are visited.
+
+
+//djistra is used to find the shortest path from source to all noces
+//while prim is used to find the mst connecting all nodes such that the cost is minimum
