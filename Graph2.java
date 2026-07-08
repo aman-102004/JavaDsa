@@ -315,6 +315,7 @@
 
 
 //TOPOLOGICAL SORT(DEPENDENCY SORTING)
+//a node is pushed into stack only when all its neighbours are visited
 //USING DFS AND A STACK
 // import java.util.*;
 // import java.util.Queue;
@@ -353,6 +354,7 @@
 //     }
 
     //topological sort using dfs
+    //
     // public static void topologicalSort(ArrayList<Edge>[] graph){ 
     //     boolean vis[]=new boolean[graph.length];
     //     Stack<Integer> s=new Stack<>();
