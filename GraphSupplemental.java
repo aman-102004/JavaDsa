@@ -210,7 +210,7 @@ public static void createGraph(ArrayList<Edge>[] graph) {
     graph[4].add(new Edge(4, 3));
 }
 
-    public static void dfs(ArrayList<Edge>[] graph,int curr,int par,int dt[],int low[],int time,boolean vis[]){
+    public static void dfs(ArrayList<Edge>[] graph,int curr,int par,int dt[],int low[],int time,boolean vis[],boolean Ap[]){
         vis[curr]=true;
         dt[curr]=low[curr]=++time;
         int children=0;
@@ -223,16 +223,16 @@ public static void createGraph(ArrayList<Edge>[] graph) {
             }else if(vis[neigh]){
                 low[curr]=Math.min(low[curr],dt[neigh]);
             }else{
-                dfs(graph,neigh,curr,dt,low,time,vis);
+                dfs(graph,neigh,curr,dt,low,time,vis,Ap);
                 low[curr]=Math.min(low[curr],low[neigh]);
                 if(par!=-1 && dt[curr]<=low[neigh]){
-                    System.out.println("Ap:"+curr);
+                    Ap[curr]=true;
                 }
                 children++;
             }
         }
         if(par==-1 && children>1){
-            System.out.println("Ap:"+curr);
+            Ap[curr]=true;
         }
 
     }
@@ -241,10 +241,18 @@ public static void createGraph(ArrayList<Edge>[] graph) {
         int low[]=new int[V];
         int time=0;
         boolean vis[]=new boolean[V];
+        boolean Ap[]=new boolean[V];
 
         for(int i=0;i<V;i++){
             if(!vis[i]){
-                dfs(graph,i, -1, dt, low, time, vis);
+                dfs(graph,i, -1, dt, low, time, vis,Ap);
+            }
+        }
+
+        //print all Aps
+        for(int i=0;i<V;i++){
+            if(Ap[i]){
+                System.out.println("Ap:"+ i);
             }
         }
     }
