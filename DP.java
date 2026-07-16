@@ -33,4 +33,4 @@ public class DP {
 //Dp is way of optimising those problems who demads a optiomal solution and have choices(eg fabonacci)
 //two ways of dp=Memoization(Top down)and Tabulation(Bottom up)
 //Memoization-dp using recursion - write normal recursion and store the subprblems to use it whenever we need it again (basically recursion+storing)
-//Tabulation-dp using loops-(a little difficult then memoization)-initlise a dp array(table) memorise what does table store ,fill the values from small to large
+//Tabulation-dp using loops-(a little difficult then memoization)-create and initlise a dp array(table), memorise what does table store ,fill the values from small to large
