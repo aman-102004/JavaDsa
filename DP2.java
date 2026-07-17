@@ -93,6 +93,11 @@ public class DP2 {
         }
 
     }
+
+    public static int KnapsackTabulation(){
+
+        //dp[i][j] means what will be the max profit at i items and j max weight and store that at dp[i][j]
+    }
     public static void main(String[] args) {
         //ClIMBING STAIRS
         // System.out.println(ClimbingStairsRecursion(5));
@@ -121,6 +126,11 @@ public class DP2 {
         }
         System.out.println(KnapsackMemoization(val, wt, W,val.length,dp));
 
+
+        //for tabulation
+        //create a table
+        //understand the meaning of the table and initialise it with base cases
+        //now fill the table from small to large
 
     }
 }
