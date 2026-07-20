@@ -94,7 +94,43 @@ public class DP2 {
 
     }
 
-    public static int KnapsackTabulation(){
+    public static int KnapsackTabulation(int val[],int wt[],int W){
+        int dp[][]=new int[val.length+1][W+1];
+
+        //initialisation
+        for(int i=0;i<dp.length;i++){
+            dp[i][0]=0;
+        }
+
+        for(int i=0;i<dp[0].length;i++){
+            dp[0][i]=0;
+        }
+
+
+        //tabulation code
+        for(int i=1;i<val.length+1;i++){
+            for(int j=1;j<W+1;j++){
+                int v=val[i-1];
+                int w=wt[i-1];//ith item weight and value
+
+                //valid condn
+                if(w<=j){
+                    int incProfit=v+dp[i-1][j-w];
+                    int excProfit=dp[i-1][j];
+
+                    dp[i][j]=Math.max(incProfit,excProfit);
+                }else{//invalid cond
+                    int excProfit=dp[i-1][j];
+                    dp[i][j]=excProfit;
+
+                }
+            }
+
+            
+
+        }
+        
+        return dp[val.length][W];
 
         //dp[i][j] means what will be the max profit at i items and j max weight and store that at dp[i][j]
     }
@@ -131,6 +167,8 @@ public class DP2 {
         //create a table
         //understand the meaning of the table and initialise it with base cases
         //now fill the table from small to large
+
+        System.out.println(KnapsackTabulation(val, wt, W));
 
     }
 }
