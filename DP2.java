@@ -129,10 +129,39 @@ public class DP2 {
             
 
         }
-        
+
         return dp[val.length][W];
 
         //dp[i][j] means what will be the max profit at i items and j max weight and store that at dp[i][j]
+    }
+
+    public static boolean targetSumSubsetTabulation(int arr[],int sum){
+        boolean dp[][]=new boolean[arr.length+1][sum+1];
+        //items;
+        //j=sum;
+        //meaning of dp[i][j]=is there any subset in i items whose sum is equal to target sum
+        //one more base condition when items are 0 and sum=x but we ar not initialising it as java by default assigns false values to all the cells
+
+        for(int i=0;i<arr.length+1;i++){
+            dp[i][0]=true;
+        }
+
+        for(int i=1;i<arr.length+1;i++){
+            for(int j=1;j<sum+1;j++){
+                //include
+                int v=arr[i-1];
+                if(v<=j && dp[i-1][j-v]==true){
+                    dp[i][j]=true;
+                }
+                //exclude
+                else if(dp[i-1][j]==true){
+                    dp[i][j]=true;
+                }
+            }
+        }
+
+        return dp[arr.length][sum];
+
     }
     public static void main(String[] args) {
         //ClIMBING STAIRS
@@ -146,29 +175,39 @@ public class DP2 {
 
 
         //0/1 Knapsack
-        int val[]={15,14,10,45,30};
-        int wt[]={2,5,1,3,4};
-        int W=7;
+        // int val[]={15,14,10,45,30};
+        // int wt[]={2,5,1,3,4};
+        // int W=7;
 
-        System.out.println(KnapsackRecursion(val, wt, W, val.length));
+        // System.out.println(KnapsackRecursion(val, wt, W, val.length));
 
-        //we have taken wt+1 and val+1 cause we need to store the base case also and that is extra in that so we need extra space for storing that data
+        // //we have taken wt+1 and val+1 cause we need to store the base case also and that is extra in that so we need extra space for storing that data
 
-        int dp[][]=new int[val.length+1][W+1];
-        for(int i=0;i<dp.length;i++){
-            for(int j=0;j<dp[0].length;j++){
-                dp[i][j]=-1;
-            }
-        }
-        System.out.println(KnapsackMemoization(val, wt, W,val.length,dp));
+        // int dp[][]=new int[val.length+1][W+1];
+        // for(int i=0;i<dp.length;i++){
+        //     for(int j=0;j<dp[0].length;j++){
+        //         dp[i][j]=-1;
+        //     }
+        // }
+        // System.out.println(KnapsackMemoization(val, wt, W,val.length,dp));
 
 
-        //for tabulation
-        //create a table
-        //understand the meaning of the table and initialise it with base cases
-        //now fill the table from small to large
+        // //for tabulation
+        // //create a table
+        // //understand the meaning of the table and initialise it with base cases
+        // //now fill the table from small to large
 
-        System.out.println(KnapsackTabulation(val, wt, W));
+        // System.out.println(KnapsackTabulation(val, wt, W));
+
+
+
+
+
+        //Target Sum
+        int arr[]={4,2,7,1,3};
+        int sum=10;
+        System.out.println(targetSumSubsetTabulation(arr, sum));
+
 
     }
 }
