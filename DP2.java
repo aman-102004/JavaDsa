@@ -163,6 +163,49 @@ public class DP2 {
         return dp[arr.length][sum];
 
     }
+
+
+    //O(n*W)
+    public static int UnboundedKnapsackTabulation(int val[],int wt[],int W){
+        int dp[][]=new int[val.length+1][W+1];
+
+        //initialisation
+        for(int i=0;i<dp.length;i++){
+            dp[i][0]=0;
+        }
+
+        for(int i=0;i<dp[0].length;i++){
+            dp[0][i]=0;
+        }
+
+
+        //tabulation code
+        for(int i=1;i<val.length+1;i++){
+            for(int j=1;j<W+1;j++){
+                int v=val[i-1];
+                int w=wt[i-1];//ith item weight and value
+
+                //valid condn
+                if(w<=j){
+                    int incProfit=v+dp[i][j-w];
+                    int excProfit=dp[i-1][j];
+
+                    dp[i][j]=Math.max(incProfit,excProfit);
+                }else{//invalid cond
+                    int excProfit=dp[i-1][j];
+                    dp[i][j]=excProfit;
+
+                }
+            }
+
+            
+
+        }
+
+        return dp[val.length][W];
+
+        //dp[i][j] means what will be the max profit at i items and j max weight and store that at dp[i][j]
+    }
     public static void main(String[] args) {
         //ClIMBING STAIRS
         // System.out.println(ClimbingStairsRecursion(5));
@@ -207,6 +250,13 @@ public class DP2 {
         int arr[]={4,2,7,1,3};
         int sum=10;
         System.out.println(targetSumSubsetTabulation(arr, sum));
+
+
+        //unbounded knapsack
+        int val[]={15,14,10,45,30};
+        int wt[]={2,5,1,3,4};
+        int W=7;
+        System.out.println(UnboundedKnapsackTabulation(val,wt,W));
 
 
     }
