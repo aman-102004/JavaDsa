@@ -253,8 +253,8 @@ public class DP2 {
 
 
         //unbounded knapsack
-        int val[]={15,14,10,45,30};
-        int wt[]={2,5,1,3,4};
+        int val[]={15,14,10,45,30,18};
+        int wt[]={2,5,1,3,4,6};
         int W=7;
         System.out.println(UnboundedKnapsackTabulation(val,wt,W));
 
