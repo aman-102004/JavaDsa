@@ -286,37 +286,64 @@ public class DP2 {
 
 
     //variation of lcs
-    public static int LongestCommonSubstring(String str1,String str2,int n,int m){
-        //table
-        int dp[][]=new int[n+1][m+1];
-        //meaning = for dp[i][j] if string of length i,j is taken what is the length of longest common string bw them
+    // public static int LongestCommonSubstring(String str1,String str2,int n,int m){
+    //     //table
+    //     int dp[][]=new int[n+1][m+1];
+    //     //meaning = for dp[i][j] if string of length i,j is taken what is the length of longest common string bw them
         
 
-        //initialisation
-        for(int i=0;i<n+1;i++){
-            dp[i][0]=0;
-        }
+    //     //initialisation
+    //     for(int i=0;i<n+1;i++){
+    //         dp[i][0]=0;
+    //     }
 
-        for(int i=0;i<m+1;i++){
-            dp[0][i]=0;
-        }
+    //     for(int i=0;i<m+1;i++){
+    //         dp[0][i]=0;
+    //     }
 
-        int ans=0;
-        for(int i=1;i<n+1;i++){
-            for(int j=1;j<m+1;j++){
-                if(str1.charAt(i-1)==str2.charAt(j-1)){
-                    dp[i][j]=dp[i-1][j-1]+1;
-                    ans=Math.max(ans,dp[i][j]);
-                }else{
-                    dp[i][j]=0;
-                }
-            }
-        }
+    //     int ans=0;
+    //     for(int i=1;i<n+1;i++){
+    //         for(int j=1;j<m+1;j++){
+    //             if(str1.charAt(i-1)==str2.charAt(j-1)){
+    //                 dp[i][j]=dp[i-1][j-1]+1;
+    //                 ans=Math.max(ans,dp[i][j]);
+    //             }else{
+    //                 dp[i][j]=0;
+    //             }
+    //         }
+    //     }
 
-        return ans;
+    //     return ans;
        
 
-    }
+    // }
+
+    // public int longestPalindromeSubseq(String s) {
+    //     StringBuilder sb=new StringBuilder("");
+    //     for(int i=s.length()-1;i>=0;i--){
+    //         sb.append(s.charAt(i));
+    //     }
+    //     int n=s.length();
+    //     int m=sb.length();
+    //     int dp[][]=new int[n+1][m+1];
+
+    //     return lcs(s,sb.toString(),dp,n,m);
+        
+    // }
+    // public static int lcs(String s1,String s2,int dp[][],int n,int m){
+    //     for(int i=1;i<n+1;i++){
+    //         for(int j=1;j<m+1;j++){
+    //             if(s1.charAt(i-1)==s2.charAt(j-1)){
+    //                 dp[i][j]=dp[i-1][j-1]+1;
+    //             }else{
+    //                 int n1=dp[i-1][j];
+    //                 int n2=dp[i][j-1];
+    //                 dp[i][j]=Math.max(n1,n2);
+    //             }
+    //         }
+    //     }
+    //     return dp[n][m];
+    // }
     
     public static void main(String[] args) {
         //ClIMBING STAIRS
