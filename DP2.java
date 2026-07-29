@@ -444,8 +444,8 @@ public class DP2 {
 
 
         //Longest common Substring
-        String str1="ABCDE";
-        String str2="ABGCE";
+        String str1="ABCDEF";
+        String str2="ABGCEF";
         int n=str1.length();
         int m=str2.length();
         System.out.println(LongestCommonSubstring(str1, str2, n, m));
