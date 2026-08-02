@@ -1,5 +1,40 @@
 public class DP3 {
 
+    //leetcode question-
+    //486
+    // public boolean predictTheWinner(int[] nums) {
+    //     int i=0;
+    //     int j=nums.length-1;
+    //     int dp[][]=new int[nums.length][nums.length];
+    //     for(int k=0;k<nums.length;k++){
+    //         for(int l=0;l<nums.length;l++){
+    //             dp[k][l]=-1;
+    //         }
+    //     }
+    //     int ans=solve(i,j,nums,dp);
+
+    //     if(ans>=0){
+    //         return true;
+    //     }else{
+    //         return false;
+    //     }
+
+    // }
+    // public static int solve(int i,int j,int nums[],int dp[][]){
+    //     if(i==j){
+    //         return dp[i][j] = nums[i];
+    //     }
+    //     if(dp[i][j]!=-1){
+    //         return dp[i][j];
+    //     }
+    //     int left=nums[i]-solve(i+1,j,nums,dp);
+
+    //     int right=nums[j]-solve(i,j-1,nums,dp);
+
+    //     dp[i][j]=Math.max(left,right);
+    //     return dp[i][j];
+    // }
+
     public static int convertString(String s1,String s2){
         int n=s1.length();
         int m=s2.length();
