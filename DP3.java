@@ -74,9 +74,9 @@ public class DP3 {
         //3 operations possible insert,remove,replace for each opeation cost is 1
         //find min cost
 
-        String s1="intention";
-        String s2="execution";
-        System.out.println(convertString(s1, s2));
+        // String s1="intention";
+        // String s2="execution";
+        // System.out.println(convertString(s1, s2));
 
         String s3="aman";
         String s4="naman";
