@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.HashMap;
 public class Hashing {
 
     public static boolean isAnagram(String s,String t){
@@ -29,25 +28,49 @@ public class Hashing {
         return map.isEmpty();
     }
 
-    public static String getStart(HashMap<String,String> tickets){
-        HashMap<String,String> revMap=new HashMap<>();
-        //String key:tickets.keySet()- ShortForm for iterating in a hashmap
-        for(String key:tickets.keySet()){
-            revMap.put(tickets.get(key),key);
+    //LEETCODE QUE
+    // public static String getStart(HashMap<String,String> tickets){
+    //     HashMap<String,String> revMap=new HashMap<>();
+    //     //String key:tickets.keySet()- ShortForm for iterating in a hashmap
+    //     for(String key:tickets.keySet()){
+    //         revMap.put(tickets.get(key),key);
 
-        }
+    //     }
 
-        for(String key:tickets.keySet()){
-            if(!revMap.containsKey(key)){
-                return key;//Startinf point
+    //     for(String key:tickets.keySet()){
+    //         if(!revMap.containsKey(key)){
+    //             return key;//Startinf point
 
-            }
-        }
+    //         }
+    //     }
 
-        return null;
+    //     return null;
 
 
-    }
+    // }
+
+    // public List<Integer> findMissingElements(int[] nums) {
+    //     int min = Integer.MAX_VALUE;
+    //     int max = Integer.MIN_VALUE;
+
+    //     HashSet<Integer> set = new HashSet<>();
+
+    //     for (int num : nums) {
+    //         min = Math.min(min, num);
+    //         max = Math.max(max, num);
+    //         set.add(num);
+    //     }
+
+    //     List<Integer> ans = new ArrayList<>();
+
+    //     for (int i = min + 1; i < max; i++) {
+    //         if (!set.contains(i)) {
+    //             ans.add(i);
+    //         }
+    //     }
+
+    //     return ans;
+    // }
     public static void main(String[] args) {
         //create
         //HashMaps Are unordered maps there is no fixed order of storage of data in a hashmap
