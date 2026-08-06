@@ -153,3 +153,90 @@ public class Graph4 {
     }
     
 }
+
+
+//     leetcode 3310
+
+// class Solution {
+//             static class Edge{
+//             int src;
+//             int dest;
+//             public Edge(int src,int dest){
+//                 this.src=src;
+//                 this.dest=dest;
+//             }
+
+//         }
+//         public static void createGraph(int[][] invocations,ArrayList<Edge> graph[]){
+
+//             for(int i=0;i<graph.length;i++){
+//                 graph[i]=new ArrayList<>();
+//             }
+
+//             for(int i=0;i<invocations.length;i++){
+//                 int src=invocations[i][0];
+//                 int dest=invocations[i][1];
+
+//                 graph[src].add(new Edge(src,dest));
+//             }
+//         }
+
+//     public static boolean[] dfs(ArrayList<Edge> graph[],int V,int k){
+//         boolean vis[]=new boolean[V];
+
+//         dfsutil(graph,vis,k);
+
+//         return vis;
+
+//     }
+
+//     public static void dfsutil(ArrayList<Edge> graph[],boolean vis[],int k){
+//         vis[k]=true;
+
+//         for(int i=0;i<graph[k].size();i++){
+//             Edge e=graph[k].get(i);
+//             if(!vis[e.dest]){
+//                 dfsutil(graph,vis,e.dest);
+//             }
+
+//         }
+
+//     }
+
+//     public List<Integer> remainingMethods(int n, int k, int[][] invocations) {
+//         ArrayList<Edge> graph[]=new ArrayList[n];
+//         createGraph(invocations,graph);
+
+//         boolean vis[]=dfs(graph,n,k);
+
+//         for(int[] edge:invocations){
+//             int src=edge[0];
+//             int dest=edge[1];
+
+//             if(!vis[src] && vis[dest]){
+//                 ArrayList<Integer> ans = new ArrayList<>();
+
+//                 for(int i=0;i<n;i++){
+//                     ans.add(i);
+//                 }
+
+//                 return ans;
+//             }
+//         }
+
+//         ArrayList<Integer> ans = new ArrayList<>();
+
+//         for(int i=0;i<n;i++){
+//             if(!vis[i]){
+//                 ans.add(i);
+//             }
+//         }
+
+//         return ans;
+
+        
+//     }
+// }
+
+
+
