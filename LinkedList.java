@@ -462,7 +462,7 @@ public class LinkedList {
 
             carry = sum / 10;
 
-            Node newNode = new Node(sum % 10);
+            Node newNode = new sNode(sum % 10);
 
             newNode.next = ans;
             ans = newNode;
