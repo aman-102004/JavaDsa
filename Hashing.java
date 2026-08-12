@@ -71,6 +71,25 @@ public class Hashing {
 
     //     return ans;
     // }
+
+    //max subarray length with at most k frequencies
+     public int maxSubarrayLength(int[] nums, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int left = 0, max = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+
+            while (map.get(nums[i]) > k){
+                map.put(nums[left], map.get(nums[left]) - 1);
+                left++;
+
+            }
+            max = Math.max(max, i - left + 1);
+        }
+
+        return max;
+    }
     public static void main(String[] args) {
         //create
         //HashMaps Are unordered maps there is no fixed order of storage of data in a hashmap
