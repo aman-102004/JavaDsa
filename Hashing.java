@@ -48,25 +48,20 @@ public class Hashing {
 
 
     public int maximumLengthSubstring(String s) {
-        HashMap<Character,Integer> map=new HashMap<>();
-        int count=0;
-        for(int i=0;i<s.length();i++){
-            if(map.get(s.charAt(i))!=null){
-                
-                if(map.get(s.charAt(i))<=2){
-                    count++;
-                }else{
-                    count--;
-                }
-                map.put(s.charAt(i),map.get(s.charAt(i))+1);
-                
-            }else{
-                count++;
-                 map.put(s.charAt(i),1);
+        HashMap<Character, Integer> map = new HashMap<>();
+        int left = 0;
+        int max = 0;
+        for (int right = 0; right < s.length(); right++) {
+            char ch = s.charAt(right);
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+            while (map.get(ch) > 2) {
+                char leftChar = s.charAt(left);
+                map.put(leftChar, map.get(leftChar) - 1);
+                left++;
             }
+            max = Math.max(max, right - left + 1);
         }
-
-        return count;
+        return max;
         
     }
     //LEETCODE QUE
