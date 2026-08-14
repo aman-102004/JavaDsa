@@ -45,6 +45,30 @@ public class Hashing {
 
         return new ArrayList<>(map.values());
     }
+
+
+    public int maximumLengthSubstring(String s) {
+        HashMap<Character,Integer> map=new HashMap<>();
+        int count=0;
+        for(int i=0;i<s.length();i++){
+            if(map.get(s.charAt(i))!=null){
+                
+                if(map.get(s.charAt(i))<=2){
+                    count++;
+                }else{
+                    count--;
+                }
+                map.put(s.charAt(i),map.get(s.charAt(i))+1);
+                
+            }else{
+                count++;
+                 map.put(s.charAt(i),1);
+            }
+        }
+
+        return count;
+        
+    }
     //LEETCODE QUE
     // public static String getStart(HashMap<String,String> tickets){
     //     HashMap<String,String> revMap=new HashMap<>();
