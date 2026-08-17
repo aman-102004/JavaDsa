@@ -91,6 +91,55 @@ public class Strings {
         return sb.toString();
     }
 
+
+    //letter combination from keypad mobile
+    public List<String> letterCombinations(String digits) {
+
+        List<String> numbers = new ArrayList<>(
+            List.of("", "", "abc", "def", "ghi", "jkl",
+                    "mno", "pqrs", "tuv", "wxyz")
+        );
+
+        List<String> ans = new ArrayList<>();
+
+        if (digits.length() == 0) {
+            return ans;
+        }
+
+        ans.add("");
+
+        for (int i = 0; i < digits.length(); i++) {
+            build(digits.charAt(i) - '0', ans, numbers);
+        }
+
+        return ans;
+    }
+
+    //this func is supplementive of above func
+    public static void build(int digit, List<String> ans, List<String> numbers) {
+
+        List<String> temp = new ArrayList<>();
+
+        int i = 0;
+
+        while (i < ans.size()) {
+
+            int j = 0;
+
+            while (j < numbers.get(digit).length()) {
+
+                temp.add(ans.get(i) + numbers.get(digit).charAt(j));
+
+                j++;
+            }
+
+            i++;
+        }
+
+        ans.clear();
+        ans.addAll(temp);
+    }
+
     
     public static void main(String[] args) {
         // char arr[]={'a','b','c','d'};
