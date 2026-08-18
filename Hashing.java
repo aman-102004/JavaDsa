@@ -95,6 +95,35 @@ public class Hashing {
 
         return max;
     }
+
+
+    //missing number in 0-n
+    public int missingNumber(int[] nums) {
+        int min=0;
+        int max=0;
+
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            min=Math.min(min,nums[i]);
+            max=Math.max(max,nums[i]);
+            map.put(nums[i],1);
+        }
+
+        int ans=-1;
+        for(int i=min;i<=max;i++){
+            if(map.get(i)!=null){
+                map.remove(i);
+            }else{
+                ans=i;
+            }
+        }
+        if(ans==-1){
+            ans=max+1;
+        }
+        
+
+        return ans;
+    }
     //LEETCODE QUE
     // public static String getStart(HashMap<String,String> tickets){
     //     HashMap<String,String> revMap=new HashMap<>();
