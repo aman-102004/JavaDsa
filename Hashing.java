@@ -16,13 +16,13 @@ public class Hashing {
             if(map.get(ch)!=null){
                 if(map.get(ch)==1){
                 map.remove(ch);
-            }else{
+                }else{
                 map.put(ch,map.get(ch)-1);
-            }
+                }
                 
-        }else{
-            return false;
-        }
+            }else{
+                return false;
+            }
             
         }
         return map.isEmpty();

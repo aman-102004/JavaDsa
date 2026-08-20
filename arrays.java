@@ -180,6 +180,49 @@ public class arrays {
 
         
     }
+
+    //leetcode 3069
+     public int[] resultArray(int[] nums) {
+        int arr1[]=new int[nums.length];
+        int arr2[]=new int[nums.length];
+
+        int j=0;
+        int k=0;
+        arr1[j]=nums[0];
+        arr2[k]=nums[1];
+        j++;
+        k++;
+
+        for(int i=2;i<nums.length;i++){
+            if(arr1[j-1]>arr2[k-1]){
+                arr1[j]=nums[i];
+                j++;
+            }else{
+                
+                arr2[k]=nums[i];
+                k++;
+            }
+        }
+
+        int ans[]=new int[nums.length];
+
+        int l=0;
+        for(int i=0;i<j;i++){
+            ans[l]=arr1[i];
+            l++;
+        }
+
+        for(int i=0;i<k;i++){
+            ans[l]=arr2[i];
+            l++;
+        }
+
+        return ans;
+
+        
+
+        
+    }
     public static void main(Strings[] args) {
         // linear search
 
