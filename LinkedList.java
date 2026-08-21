@@ -436,12 +436,12 @@ public class LinkedList {
         Stack<Integer> s2 = new Stack<>();
 
         while (l1 != null) {
-            s1.push(l1.val);
+            s1.push(l1.data);
             l1 = l1.next;
         }
 
         while (l2 != null) {
-            s2.push(l2.val);
+            s2.push(l2.data);
             l2 = l2.next;
         }
 
@@ -462,7 +462,7 @@ public class LinkedList {
 
             carry = sum / 10;
 
-            Node newNode = new sNode(sum % 10);
+            Node newNode = new Node(sum % 10);
 
             newNode.next = ans;
             ans = newNode;

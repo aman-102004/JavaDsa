@@ -223,6 +223,42 @@ public class arrays {
 
         
     }
+
+    public static int Gcd(int num1,int num2){
+        while(num2!=0){
+            int temp=num2;
+            num2=num1%num2;
+            num1=temp;
+
+        }
+        return num1;
+
+    }
+
+    public long gcdSum(int[] nums) {
+        int max=0;
+       
+        
+
+        int prefixGcd[]=new int[nums.length];
+        for(int i=0;i<nums.length;i++){
+            max=Math.max(max,nums[i]);
+            prefixGcd[i]=Gcd(nums[i],max);
+        }
+        Arrays.sort(prefixGcd);
+        
+        int n1=0;
+        int n2=prefixGcd.length-1;
+        long sum=0;
+        while(n1<n2){
+            sum+=Gcd(prefixGcd[n1],prefixGcd[n2]);
+            n1++;
+            n2--;
+        }
+
+        return sum;
+
+    }
     public static void main(Strings[] args) {
         // linear search
 
