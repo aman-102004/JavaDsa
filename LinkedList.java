@@ -1,3 +1,4 @@
+import java.util.PriorityQueue;
 import java.util.Stack;
 
 public class LinkedList {
@@ -469,6 +470,36 @@ public class LinkedList {
         }
 
         return ans;
+    }
+
+    public Node mergeKLists(Node[] lists) {
+        
+        PriorityQueue<Node> pq=new PriorityQueue<>((a, b) -> a.val - b.val);
+        for(int i=0;i<lists.length;i++){
+            if(lists[i]!=null){
+                pq.add(lists[i]);
+
+            }
+            
+
+        }
+        Node dummy=new Node(-1);
+        Node tail=dummy;
+
+
+        while(!pq.isEmpty()){
+            Node curr=pq.remove();
+            tail.next=curr;
+            tail=curr;
+            
+            if(curr.next!=null){
+                pq.add(curr.next);
+            }
+            
+            
+        }
+        return dummy.next;
+        
     }
 
     public static void main(String[] args) {
