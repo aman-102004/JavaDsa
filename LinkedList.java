@@ -502,6 +502,37 @@ public class LinkedList {
         
     }
 
+    public Node swapPairs(Node head) {
+
+
+        if(head==null){
+            return head;
+        }
+        
+        
+        Node first=new Node(-1);
+        first.next=head;
+
+        Node temp=first;
+
+        while(temp.next!=null && temp.next.next!= null){
+            Node curr=temp.next;
+            Node next=curr.next;
+
+            temp.next=next;
+            curr.next=next.next;
+            next.next=curr;
+
+            temp=curr;
+            
+        }
+        
+      
+        
+      return first.next;
+
+    }
+
     public static void main(String[] args) {
         LinkedList ll=new LinkedList();
 
