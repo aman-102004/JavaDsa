@@ -140,7 +140,35 @@ public class Strings {
         ans.addAll(temp);
     }
 
-    
+     public static boolean isPalindrome(String str){
+        int left=0;
+        int right=str.length()-1;
+
+        while(left<right){
+            if(str.charAt(left)!=str.charAt(right)){
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+    public String longestPalindrome(String s) {
+       String ans="";
+
+       for(int i=0;i<s.length();i++){
+        for(int j=i;j<s.length();j++){
+            String sub=s.substring(i,j+1);
+
+            if(isPalindrome(sub) && sub.length()>ans.length()){
+                ans=sub;
+            }
+        }
+       }
+       return ans;
+        
+    }
     public static void main(String[] args) {
         // char arr[]={'a','b','c','d'};
         // String str="abcd";
