@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class backtracking{
     public static void printarray(int arr[]){
         for(int i=0;i<arr.length;i++){
@@ -230,7 +233,34 @@ public class backtracking{
 
     
 
-    
+    public List<String> generateParenthesis(int n) {
+        List<String> answer = new ArrayList<>();
+        Parenthesis(n, n, answer, new StringBuilder(""));
+        return answer;
+    }
+
+    public static void Parenthesis(int open, int close,
+                                   List<String> answer,
+                                   StringBuilder sb) {
+
+        if (open == 0 && close == 0) {
+            answer.add(sb.toString());
+            return;
+        }
+
+        if (open > 0) {
+            sb.append('(');
+            Parenthesis(open - 1, close, answer, sb);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+
+        if (close > open) {
+            sb.append(')');
+            Parenthesis(open, close - 1, answer, sb);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+    }
+}
 
     public static void main(String[] args) {
         // // int arr[]=new int[5];

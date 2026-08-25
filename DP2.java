@@ -285,7 +285,7 @@ public class DP2 {
     }
 
 
-    variation of lcs
+    //variation of lcs
     public static int LongestCommonSubstring(String str1,String str2,int n,int m){
         //table
         int dp[][]=new int[n+1][m+1];
