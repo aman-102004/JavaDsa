@@ -169,6 +169,70 @@ public class Strings {
        return ans;
         
     }
+    //leetcode 2904
+    public static boolean isBeautiful(String str,int n){
+       
+        HashMap<Character,Integer> map=new HashMap<>();
+
+        for(Character ch:str.toCharArray()){ 
+            if(map.get(ch)!=null){
+                map.put(ch,map.get(ch)+1);
+            }else{
+                 map.put(ch,1);
+            }
+
+           
+        }
+
+        if(map.get('1')!=null && map.get('1')==n){
+            return true;
+        }
+        return false;
+    }
+    public String shortestBeautifulSubstring(String s, int k) {
+        
+        List<String> substr=new ArrayList<>();
+
+        for(int i=0;i<s.length();i++){
+            int count=0;
+            for(int j=i;j<s.length();j++){
+                if(s.charAt(j)=='1'){
+                    count++;
+                }
+                if(count == k){
+                    String sub = s.substring(i, j + 1);
+                    if(isBeautiful(sub, k)){
+                        substr.add(sub);
+                    }
+                }
+                if(count > k){
+                    break;
+                }
+            }
+        }
+
+       Collections.sort(substr, (a, b) -> a.length() - b.length());
+
+        if(substr.size()==0){
+            return "";
+        }
+        String answer = substr.get(0);
+
+        for(String str : substr) {
+            if(str.length() > answer.length()) {
+                break;
+            }
+
+            if(str.compareTo(answer) < 0) {
+                answer = str;
+            }
+        }
+
+        return answer;
+
+
+        
+    }
     public static void main(String[] args) {
         // char arr[]={'a','b','c','d'};
         // String str="abcd";
