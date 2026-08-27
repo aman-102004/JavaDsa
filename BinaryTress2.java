@@ -359,6 +359,34 @@ public class BinaryTress2 {
         preorder(root.left);
         preorder(root.right);
     }
+
+
+
+    //leetcode 113
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        List<List<Integer>> answer=new ArrayList<>();
+        List<Integer> temp=new ArrayList<>();
+
+        sum(root,targetSum,answer,temp,0);
+        return answer;
+    }
+
+    public static void sum(TreeNode root,int targetsum,List<List<Integer>> answer,List<Integer> temp,int currsum){
+        if(root==null){ 
+            return;
+        }
+        temp.add(root.val);
+        currsum+=root.val;
+
+        if (root.left == null && root.right == null) {
+            if (currsum == targetsum) {
+                answer.add(new ArrayList<>(temp));
+            }
+        }
+        sum(root.left,targetsum,answer,temp,currsum);
+        sum(root.right,targetsum,answer,temp,currsum);
+        temp.remove(temp.size()-1);
+    }
     public static void main(String[] args) {
            /*      1
                  /    \
