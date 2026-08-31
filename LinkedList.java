@@ -533,6 +533,73 @@ public class LinkedList {
 
     }
 
+
+    //LC 2058
+    public static boolean maxima(ListNode prev, ListNode curr, ListNode next) {
+        return prev.val < curr.val && next.val < curr.val;
+    }
+
+    public static boolean minima(ListNode prev, ListNode curr, ListNode next) {
+        return prev.val > curr.val && next.val > curr.val;
+    }
+
+    public int[] nodesBetweenCriticalPoints(ListNode head) {
+
+        int ans[] = new int[2];
+        ans[0] = -1;
+        ans[1] = -1;
+
+        int count = 0;
+        int max = 0;
+        int min = 0;
+
+        int nodenum = 2;
+        int first = 0;
+        int prevCritical = -1;
+
+        ListNode temp = head;
+
+        while(temp != null && temp.next != null && temp.next.next != null) {
+
+            ListNode prev = temp;
+            temp = temp.next;
+            ListNode next = temp.next;
+
+            if(maxima(prev, temp, next) || minima(prev, temp, next)) {
+
+                count++;
+
+                if(count == 1) {
+                    first = nodenum;
+                }
+
+                if(prevCritical != -1) {
+                    int distance = nodenum - prevCritical;
+
+                    if(min == 0 || distance < min) {
+                        min = distance;
+                    }
+                }
+
+                prevCritical = nodenum;
+            }
+
+            nodenum++;
+           
+        }
+
+        if(count < 2) {
+            return ans;
+        }
+
+        max = prevCritical - first;
+
+        ans[0] = min;
+        ans[1] = max;
+
+        return ans;
+    }
+
     public static void main(String[] args) {
         LinkedList ll=new LinkedList();
 
