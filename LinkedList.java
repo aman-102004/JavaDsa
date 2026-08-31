@@ -474,7 +474,7 @@ public class LinkedList {
 
     public Node mergeKLists(Node[] lists) {
         
-        PriorityQueue<Node> pq=new PriorityQueue<>((a, b) -> a.val - b.val);
+        PriorityQueue<Node> pq=new PriorityQueue<>((a, b) -> a.data - b.data);
         for(int i=0;i<lists.length;i++){
             if(lists[i]!=null){
                 pq.add(lists[i]);
@@ -535,15 +535,15 @@ public class LinkedList {
 
 
     //LC 2058
-    public static boolean maxima(ListNode prev, ListNode curr, ListNode next) {
-        return prev.val < curr.val && next.val < curr.val;
+    public static boolean maxima(Node prev, Node curr, Node next) {
+        return prev.data < curr.data && next.data < curr.data;
     }
 
-    public static boolean minima(ListNode prev, ListNode curr, ListNode next) {
-        return prev.val > curr.val && next.val > curr.val;
+    public static boolean minima(Node prev, Node curr, Node next) {
+        return prev.data > curr.data && next.data > curr.data;
     }
 
-    public int[] nodesBetweenCriticalPoints(ListNode head) {
+    public int[] nodesBetweenCriticalPoints(Node head) {
 
         int ans[] = new int[2];
         ans[0] = -1;
@@ -557,13 +557,13 @@ public class LinkedList {
         int first = 0;
         int prevCritical = -1;
 
-        ListNode temp = head;
+        Node temp = head;
 
         while(temp != null && temp.next != null && temp.next.next != null) {
 
-            ListNode prev = temp;
+            Node prev = temp;
             temp = temp.next;
-            ListNode next = temp.next;
+            Node next = temp.next;
 
             if(maxima(prev, temp, next) || minima(prev, temp, next)) {
 
