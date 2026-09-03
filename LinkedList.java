@@ -563,7 +563,7 @@ public class LinkedList {
 
             Node prev = temp;
             temp = temp.next;
-            Node next = temp.next;
+             Node next = temp.next;
 
             if(maxima(prev, temp, next) || minima(prev, temp, next)) {
 
