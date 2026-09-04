@@ -286,6 +286,40 @@ public class arrays {
 
         return (double) maxSum / k;
     }
+
+
+    //lc3903
+     public int firstStableIndex(int[] nums, int k) {
+        int prefixmax[]=new int[nums.length];
+        int suffixmin[]=new int[nums.length];
+
+        int max=0;
+        for(int i=0;i<nums.length;i++){
+            
+            int currnum=nums[i];
+            max=Math.max(max,currnum);
+            prefixmax[i]=max;
+        }
+
+        int min=nums[nums.length-1];
+        suffixmin[nums.length-1]=min;
+        for(int i=nums.length-2;i>=0;i--){
+            
+            int currnum=nums[i];
+            min=Math.min(min,currnum);
+            suffixmin[i]=min;
+        }
+
+        
+
+        for(int i=0;i<nums.length;i++){
+            if (prefixmax[i] - suffixmin[i] <= k) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
     public static void main(Strings[] args) {
         // linear search
 
