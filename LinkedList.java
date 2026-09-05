@@ -600,6 +600,34 @@ public class LinkedList {
         return ans;
     }
 
+    //lc19
+    // public ListNode removeNthFromEnd(ListNode head, int n) {
+    //     //node to be deleted from last=totalnodes-n+1
+
+    //     int totalnodes=0;
+    //     ListNode temp=head;
+    //     while(temp!=null){
+    //         totalnodes++;
+    //         temp=temp.next;
+    //     }
+
+    //     if(totalnodes==n){
+    //         return head.next;
+    //     }
+
+    //     int delNode=totalnodes-n;
+    //     int i=1;
+    //     ListNode prev=head;
+    //     while(i<delNode){
+    //         prev=prev.next;
+    //         i++;
+    //     }
+    //     prev.next=prev.next.next;
+
+    // return head;
+
+
+    // }
     public static void main(String[] args) {
         LinkedList ll=new LinkedList();
 
