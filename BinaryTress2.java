@@ -363,7 +363,7 @@ public class BinaryTress2 {
 
 
     //leetcode 113
-    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+    public List<List<Integer>> pathSum(Node root, int targetSum) {
         List<List<Integer>> answer=new ArrayList<>();
         List<Integer> temp=new ArrayList<>();
 
@@ -371,12 +371,12 @@ public class BinaryTress2 {
         return answer;
     }
 
-    public static void sum(TreeNode root,int targetsum,List<List<Integer>> answer,List<Integer> temp,int currsum){
+    public static void sum(Node root,int targetsum,List<List<Integer>> answer,List<Integer> temp,int currsum){
         if(root==null){ 
             return;
         }
-        temp.add(root.val);
-        currsum+=root.val;
+        temp.add(root.data);
+        currsum+=root.data;
 
         if (root.left == null && root.right == null) {
             if (currsum == targetsum) {
