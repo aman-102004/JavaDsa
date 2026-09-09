@@ -260,8 +260,80 @@ public class backtracking{
             sb.deleteCharAt(sb.length() - 1);
         }
     }
-}
 
+
+//LC 52
+// public static boolean isSafe(char[][] board, int row, int col) {
+
+//         // Vertical up
+//         for (int i = row - 1; i >= 0; i--) {
+//             if (board[i][col] == 'Q') {
+//                 return false;
+//             }
+//         }
+
+//         // Diagonal left up
+//         for (int i = row - 1, j = col - 1;
+//              i >= 0 && j >= 0;
+//              i--, j--) {
+
+//             if (board[i][j] == 'Q') {
+//                 return false;
+//             }
+//         }
+
+//         // Diagonal right up
+//         for (int i = row - 1, j = col + 1;
+//              i >= 0 && j < board.length;
+//              i--, j++) {
+
+//             if (board[i][j] == 'Q') {
+//                 return false;
+//             }
+//         }
+
+//         return true;
+//     }
+
+//     public static int nQueens(char[][] board, int row) {
+
+//         // All queens placed
+//         if (row == board.length) {
+//             return 1;
+//         }
+
+//         int count = 0;
+
+//         for (int i = 0; i < board.length; i++) {
+
+//             if (isSafe(board, row, i)) {
+
+//                 // Place
+//                 board[row][i] = 'Q';
+
+//                 // Go to next row
+//                 count += nQueens(board, row + 1);
+
+//                 // Backtrack
+//                 board[row][i] = '.';
+//             }
+//         }
+
+//         return count;
+//     }
+
+//     public int totalNQueens(int n) {
+
+//         char[][] board = new char[n][n];
+
+//         for (int i = 0; i < board.length; i++) {
+//             for (int j = 0; j < board[0].length; j++) {
+//                 board[i][j] = '.';
+//             }
+//         }
+
+//         return nQueens(board, 0);
+//     }
     public static void main(String[] args) {
         // // int arr[]=new int[5];
         // // changearr(arr, 0, 1);
