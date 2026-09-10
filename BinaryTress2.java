@@ -2,6 +2,8 @@ import java.util.*;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import javax.swing.tree.TreeNode;
+
 public class BinaryTress2 {
 
     static class Node{
@@ -426,6 +428,65 @@ public class BinaryTress2 {
 
         return ans.toString();
     }
+
+    //lc2265
+    // int ans=0;
+    // public int sum(TreeNode root){
+    //     if(root==null){
+    //         return 0;
+    //     }
+    //     int leftsum=sum(root.left);
+    //     int rightsum=sum(root.right);
+
+    //     return root.val+leftsum+rightsum;
+
+        
+
+    // }
+    // public int count(TreeNode root){
+    //     if(root==null){
+    //         return 0;
+    //     }
+      
+
+    //     int leftcount=count(root.left);
+    //     int rightcount=count(root.right);
+       
+    //     return leftcount+rightcount+1;
+
+        
+
+    // }
+
+    // public  void traversal(TreeNode root){
+    //     if(root==null){
+    //         return;
+        
+    //     }
+        
+    //     int sum=sum(root);
+    //     int count=count(root);
+    //     int avg = sum / count;
+        
+    //     if(avg==root.val){
+    //         ans++;
+    //     }
+    //     traversal(root.left);
+    //     traversal(root.right);
+    // }
+
+
+    // public int averageOfSubtree(TreeNode root) {
+        
+
+        
+    //     traversal(root);
+    //     return ans;
+
+
+    // }
+
+    
     public static void main(String[] args) {
            /*      1
                  /    \
