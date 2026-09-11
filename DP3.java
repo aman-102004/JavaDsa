@@ -1,3 +1,4 @@
+import java.util.*;
 public class DP3 {
 
     //leetcode question-
@@ -69,6 +70,139 @@ public class DP3 {
         return dp[n][m];
 
     }
+
+    //lc44
+    public static boolean WildCardMatch(String s,String p){
+        int n=s.length();
+        int m=p.length();
+
+        boolean dp[][]=new boolean[n+1][m+1];
+
+        //dp array means -if we take string of length n and other strring of length p will they match basically breaking into smaller problems
+        
+        //initialise
+
+        //case 1
+        dp[0][0]=true;
+
+        //case2
+        //pattern empty
+        for(int i=1;i<n+1;i++){
+            dp[i][0]=false;
+        }
+
+        //case 3 
+        //String s is empty
+
+        for(int j=1;j<m+1;j++){
+            if(p.charAt(j-1) == '*'){
+                dp[0][j]=dp[0][j-1];
+            }   
+        }
+
+        //dp solution
+
+        for(int i=1;i<n+1;i++){
+            for(int j=1;j<m+1;j++){
+                //case 1
+                //ith char==jth char || jth char=='?'
+                if(s.charAt(i-1)==p.charAt(j-1) || p.charAt(j-1)=='?'){
+                    dp[i][j]=dp[i-1][j-1];
+                }
+                else if(p.charAt(j-1)=='*'){
+                    dp[i][j]=dp[i-1][j] || dp[i][j-1];
+
+                }else{
+                    dp[i][j]=false;
+                }
+            }
+        }
+
+        return dp[n][m];
+    }
+
+    public static int catalanNum(int n){
+        if(n==0 || n==1){
+            return 1;
+        }
+
+        int ans=0;
+        for(int i=0;i<n;i++){
+            ans+=catalanNum(i)*catalanNum(n-i-1);
+        }
+
+        return ans;
+
+    }
+
+    public static int catalanNumMemo(int n,int dp[]){
+        if(n==0 || n==1){
+            return 1;
+        }
+
+        if(dp[n]!=-1){
+            return dp[n];
+        }
+        int ans=0;
+        for(int i=0;i<n;i++){
+            ans=ans+catalanNumMemo(i,dp)*catalanNumMemo(n-i-1,dp);
+        }
+
+       
+
+        return dp[n]=ans;
+
+    }
+
+    public static int catalanNumTabu(int n){
+        //dp[i]==ith catalan num
+
+        int dp[]=new int[n+1];
+        dp[0]=1;
+        dp[1]=1;
+
+        for(int i=2;i<n+1;i++){
+            for(int j=0;j<i;j++){
+                dp[i]+=dp[j]*dp[i-j-1];//ci=cj*Ci-j-i;
+            }
+
+        }
+
+        return dp[n];
+
+    }
+
+    public static int countBST(int n){
+        int dp[]=new int[n+1];
+        dp[0]=1;
+        dp[1]=1;
+
+        for(int i=2;i<n+1;i++){
+            for(int j=0;j<i;j++){
+                int left=dp[j];
+                int right=dp[i-j-1];
+                dp[i]+=left*right;
+            }
+        }
+
+        return dp[n];
+    }
+
+    public static int mountainranges(int n){
+        int dp[]=new int[n+1];
+        dp[0]=1;
+        dp[1]=1;
+
+        for(int i=2;i<n+1;i++){
+            for(int j=0;j<i;j++){
+                int inside=dp[j];
+                int outside=dp[i-j-1];
+                dp[i]+=inside*outside;
+            }
+        }
+
+        return dp[n];
+    }
     public static void main(String[] args) {
         //CONVERTING STRING 1 TO 2 
         //3 operations possible insert,remove,replace for each opeation cost is 1
@@ -78,11 +212,41 @@ public class DP3 {
         // String s2="execution";
         // System.out.println(convertString(s1, s2));
 
-        String s3="aman";
-        String s4="naman";
+        // String s3="aman";
+        // String s4="naman";
 
         
-        System.out.println(convertString(s3,s4));
+        // System.out.println(convertString(s3,s4));
+
+
+
+
+        //WildCard Matching
+        // String s="baaabab";
+        // String p="*****ba*****ab";
+        // System.out.println(WildCardMatch(s, p));
+
+
+        //catalan NUm
+        //recursion
+        //Similar type===== count BSTS and Mountain ranges
+        System.out.println(catalanNum(4));
+        
+
+        //memoization
+        int n=4;
+        int dp[]=new int[n+1];
+        Arrays.fill(dp,-1);
+
+
+        System.out.println(catalanNumMemo(n, dp));
+
+        //Catalan Tabu
+        System.out.println(catalanNumTabu(n));
+
+        System.out.println(countBST(n));
+        System.out.println(mountainranges(n));
+
 
 
     }
