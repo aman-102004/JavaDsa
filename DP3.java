@@ -203,6 +203,34 @@ public class DP3 {
 
         return dp[n];
     }
+
+    //lc368
+     public List<Integer> largestDivisibleSubset(int[] nums) {
+        Arrays.sort(nums);
+        ArrayList<Integer> dp[]=new ArrayList[nums.length];
+
+        for(int i=0;i<nums.length;i++){
+            dp[i]=new ArrayList<>();
+            dp[i].add(nums[i]);
+
+            for(int j=0;j<i;j++){
+                if(nums[i]%nums[j]==0 && dp[j].size()+1>dp[i].size()){
+                    dp[i]=new ArrayList<>(dp[j]);
+                    dp[i].add(nums[i]);
+                }
+            }
+        }
+
+        ArrayList<Integer> ans=dp[0];
+
+        for(int i=1;i<dp.length;i++){
+            if(dp[i].size()>ans.size()){
+                ans=dp[i];
+            }
+        }
+
+        return ans;
+    }
     public static void main(String[] args) {
         //CONVERTING STRING 1 TO 2 
         //3 operations possible insert,remove,replace for each opeation cost is 1
