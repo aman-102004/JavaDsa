@@ -207,6 +207,7 @@ public class DP3 {
     //lc368
      public List<Integer> largestDivisibleSubset(int[] nums) {
         Arrays.sort(nums);
+        @SuppressWarnings("unchecked")
         ArrayList<Integer> dp[]=new ArrayList[nums.length];
 
         for(int i=0;i<nums.length;i++){
@@ -230,6 +231,34 @@ public class DP3 {
         }
 
         return ans;
+    }
+
+    public static int MCM(int arr[],int start,int end){//we will be taking another varible inside a loop to make a cut and divide the matrices into number of small problems
+        
+        if(start==end){
+            return 0;//single matrix case
+        }
+
+        //basic matrix understanding
+        
+        // axb * c*d = a*d;(onlt possible if b==c)
+        //total operations=a * b *d;(b = c so we can take anyone)
+
+        int ans=Integer.MAX_VALUE;
+
+        for(int k=start;k<=end-1;k++){
+            //k=the part from where we gonna divide the matrix into two parts
+            int cost1=MCM(arr,start,k);//Ai......Ak=arr[i-1]*arr[k];
+            int cost2=MCM(arr,k+1,end);//Ak+1.....A=arr[k]*arr[end];
+            
+            int cost3=arr[start-1]*arr[k]*arr[end];//cost of multiplication of two matrix is explained above
+
+            ans=Math.min(ans,cost1+cost2+cost3);
+        }
+
+
+        return ans;
+
     }
     public static void main(String[] args) {
         //CONVERTING STRING 1 TO 2 
@@ -258,22 +287,28 @@ public class DP3 {
         //catalan NUm
         //recursion
         //Similar type===== count BSTS and Mountain ranges
-        System.out.println(catalanNum(4));
+        // System.out.println(catalanNum(4));
         
 
         //memoization
-        int n=4;
-        int dp[]=new int[n+1];
-        Arrays.fill(dp,-1);
+        // int n=4;
+        // int dp[]=new int[n+1];
+        // Arrays.fill(dp,-1);
 
 
-        System.out.println(catalanNumMemo(n, dp));
+        // System.out.println(catalanNumMemo(n, dp));
 
         //Catalan Tabu
-        System.out.println(catalanNumTabu(n));
+        // System.out.println(catalanNumTabu(n));
 
-        System.out.println(countBST(n));
-        System.out.println(mountainranges(n));
+        // System.out.println(countBST(n));
+        // System.out.println(mountainranges(n));
+
+
+        //MATRIX CHAIN MULTIPLICATION
+
+        int arr[]={1,2,3,4,3};
+        System.out.println(MCM(arr,1,arr.length-1));
 
 
 
