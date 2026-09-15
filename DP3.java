@@ -260,6 +260,30 @@ public class DP3 {
         return ans;
 
     }
+
+    public static int MCMmemo(int arr[],int start,int end,int dp[][]){
+       
+
+        if(start==end){
+            return 0;
+        }
+        if(dp[start][end]!=-1){
+            return dp[start][end];
+        }
+
+        int ans=Integer.MAX_VALUE;
+        for(int k=start;k<=end-1;k++){
+            int cost1=MCMmemo(arr,start,k,dp);
+            int cost2=MCMmemo(arr,k+1,end,dp);
+            int cost3=arr[start-1]*arr[k]*arr[end];
+            ans=Math.min(ans,cost1+cost2+cost3);
+        }
+
+        return dp[start][end]=ans;
+       
+
+        //dp[i][j]= this tells the minimum cost of multiplication of ith and jth matrix in the array
+    }
     public static void main(String[] args) {
         //CONVERTING STRING 1 TO 2 
         //3 operations possible insert,remove,replace for each opeation cost is 1
@@ -309,6 +333,16 @@ public class DP3 {
 
         int arr[]={1,2,3,4,3};
         System.out.println(MCM(arr,1,arr.length-1));
+
+
+        int n=arr.length;
+        int dp[][]=new int[n][n];
+         for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                dp[i][j]=-1;
+            }
+        }
+        System.out.println(MCMmemo(arr, 1, arr.length-1,dp));
 
 
 
