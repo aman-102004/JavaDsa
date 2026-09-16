@@ -261,6 +261,8 @@ public class DP3 {
 
     }
 
+     //total matrices =A1 A2 A3 A4 that is why in recursion and memo we run loop for only 4 times
+    //dp[i][j]=min operations of i to j matrices
     public static int MCMmemo(int arr[],int start,int end,int dp[][]){
        
 
@@ -283,6 +285,99 @@ public class DP3 {
        
 
         //dp[i][j]= this tells the minimum cost of multiplication of ith and jth matrix in the array
+    }
+
+    public static int MCMtabu(int arr[]){
+        int n=arr.length;
+        int dp[][]=new int [n][n];
+
+
+        //initialisation
+        for(int i=0;i<n;i++){
+            dp[i][i]=0;
+        }
+
+        //bottom up code
+        //len 2 as we start by taking 2 matrices at once 
+        for(int len=2;len<=n-1;len++){
+            for(int i=1;i<=n-len;i++){
+                int j=i+len-1;
+                dp[i][j]=Integer.MAX_VALUE;
+                for(int k=i;k<=j-1;k++){
+                    int cost1=dp[i][k];
+                    int cost2=dp[k+1][j];
+                    int cost3=arr[i-1]*arr[k]*arr[j];
+                    dp[i][j]=Math.min(dp[i][j],cost1+cost2+cost3);
+                }
+            }
+
+        }
+        printdp(dp);
+        return dp[1][n-1];
+
+    }
+    public static void printdp(int dp[][]){
+        for(int i=0;i<dp.length;i++){
+            for(int j=0;j<dp[0].length;j++){
+                System.out.print(dp[i][j]+"  ");
+            }
+            System.out.println();
+        }
+    }
+
+    
+
+    //MINIMUM PARTITIONING
+    //here dp[i][j]=can we get get the value W from i elements
+    //converted it into a 0/1 knapsack by converitng as for min diff both sets shpuld have equal sum so converted that sum/2 into max W of set 1 and then selected element which can come max closer to that sum 
+    public static int MinimumPartitioning(int nums[],int sum){
+        int W=sum/2;
+        int n=nums.length;
+        int dp[][]=new int[n+1][W+1];
+
+        for(int i=1;i<n+1;i++){
+            for(int j=1;j<W+1;j++){
+                //include
+                if(nums[i-1]<=j){
+                    
+                    dp[i][j]=Math.max(nums[i-1]+dp[i-1][j-nums[i-1]],dp[i-1][j]);
+
+                }else{
+                    dp[i][j]=dp[i-1][j];
+                }
+            }
+
+            
+        }
+        int sum1=dp[n][W];
+        int sum2=sum-sum1;
+        
+        return Math.abs(sum1-sum2);
+
+
+    }
+
+    public static int MinJumps(int arr[],int dp[]){
+
+        int n=arr.length;
+        dp[n-1]=0;
+        //as we are already at n-1 index so 0 jumps
+
+        for(int i=arr.length-2;i>=0;i--){
+            int steps=arr[i];
+            int ans=Integer.MAX_VALUE;
+            for(int j=i+1;j<=i+steps && j<n;j++){
+                if(dp[j]!=-1){
+                    ans=Math.min(ans,dp[j]+1);
+                }
+
+            }
+            dp[i]=ans!=Integer.MAX_VALUE?ans:-1;
+            
+
+
+        }
+        return dp[0];
     }
     public static void main(String[] args) {
         //CONVERTING STRING 1 TO 2 
@@ -331,20 +426,70 @@ public class DP3 {
 
         //MATRIX CHAIN MULTIPLICATION
 
-        int arr[]={1,2,3,4,3};
-        System.out.println(MCM(arr,1,arr.length-1));
+
+        //total matrices =A1 A2 A3 A4 that is why in recursion and memo we run loop for only 4 times
+        // int arr[]={1,2,3,4,3};
+        // System.out.println(MCM(arr,1,arr.length-1));
+
+        // //mcm memo
+        // int n=arr.length;
+        // int dp[][]=new int[n][n];
+        //  for(int i=0;i<n;i++){
+        //     for(int j=0;j<n;j++){
+        //         dp[i][j]=-1;
+        //     }
+        // }
+        // System.out.println(MCMmemo(arr, 1, arr.length-1,dp));
+
+        //mcm tabulation
+        //dp[i][j]=minimum cost of multiplication of i to j matrix
 
 
+        //here we will intilise all the diagonal element when i==j as 0 as the cost of multiplying a matrix i*i is 0
+        //also the lower cellsbelow this diagonal will never be filled as we dont need them they have no meaning like (eg i=3 j=2 this becomes reverse order of taking matrix else no need)
+
+        // int arr[]={1,2,3,4,3};
+        // System.out.println(MCMtabu(arr));
+
+        //in MCM questions variation there is a type in which you have to start and end at a certain posi
+        // we have to choose a k (cut point)
+        //then problem is divided into parts now find solution of seperate parts
+
+
+
+
+
+        //MINIMUM PARTITIONING
+        //partion array into two parts such that the they have the min diff 
+        //variation of 0/1 knapsack
+        // int nums[]={1,6,11,5};
+        // int n=nums.length;
+        // int sum=0;
+        // for(int i=0;i<nums.length;i++){
+        //     sum+=nums[i];
+        // }
+
+        // int ans=MinimumPartitioning(nums, sum);
+        // System.out.println(ans);
+
+
+        //MIN ARRAY JUMPS
+
+        int arr[]={2,3,1,1,4};
         int n=arr.length;
-        int dp[][]=new int[n][n];
-         for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++){
-                dp[i][j]=-1;
-            }
+        int dp[]=new int[n];
+        //1d dp as only the starting posi is changing
+
+        for(int i=0;i<dp.length;i++){
+            dp[i]=-1;
         }
-        System.out.println(MCMmemo(arr, 1, arr.length-1,dp));
 
 
+        //dp[i]=min jums requeried from ith index to reach n-1 index
 
+        System.out.println(MinJumps(arr, dp));
     }
 }
+
+
+//in tablutaion whaever is the final reult we need that only is the meaning of its smaller subproblems 
