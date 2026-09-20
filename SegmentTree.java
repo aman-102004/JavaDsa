@@ -1,7 +1,36 @@
 public class SegmentTree {
+    static int tree[];
 
+    public static void init(int n){
+        tree=new int[4*n];
+    }
+
+    //sti is the child index of the root;//2*i+1 for left and 2*i+2 for right
+    public static int buildST(int arr[],int i,int start,int end){
+        if(start==end){
+            tree[i]=arr[start];
+            return arr[start];
+        }
+
+        int mid=(start+end)/2;
+        buildST(arr, 2*i+1, start,mid);
+        buildST(arr, 2*i+2, mid+1, end);
+        tree[i]=tree[2*i+1]+tree[2*i+2];
+        return tree[i];
+    }
+    //construction time complexity=O(n);
+    //query and update time complexity logn
     public static void main(String[] args) {
-        
+        int arr[]={1,2,3,4,5,6,7,8};
+        int n=arr.length;
+
+        init(n);
+        buildST(arr,0, 0, n-1);
+
+        for(int i=0;i<tree.length;i++){
+            System.out.print(tree[i]+" ");
+        }
+
     }
     
 }
@@ -22,3 +51,4 @@ public class SegmentTree {
 //meaning of nodes=we will store the sum of the nodes from from starting to end point of the node (for ex the base node will contain the whole sum)(thus range values acc to the meaning of the segment trees)
 //thus the nodes of the segment tree will contain sum of the nodes after divide and conquer
 //we can define segment tree as a tree like ds whose nodes contain the sum of the nodes which are present after divide and conquer
+//it will be a full binary tree
