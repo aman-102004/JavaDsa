@@ -41,6 +41,28 @@ public class SegmentTree {
         return getSumUtil(0,0, n-1, qi, qj);
     }
 
+    public static void update(int arr[],int idx,int newval){
+        int n=arr.length;
+        int diff=newval-arr[idx];
+        arr[idx]=newval;
+
+        updateutil(0,0,n-1,idx,diff);
+
+    }
+
+    public static void updateutil(int i,int si,int sj,int idx,int diff){//O(logn)
+        if(idx<si || idx>sj){
+            return;
+        }
+
+        tree[i]+=diff;
+
+        if(si!=sj){//its a non leaf condition
+            int mid=(si+sj)/2;
+            updateutil(2*i+1, si, mid, idx, diff);//update left
+            updateutil(2*i+2, mid+1, sj, idx, diff);//update right
+        }
+    }
 
     //construction time complexity=O(n);
     //query and update time complexity logn
@@ -57,6 +79,9 @@ public class SegmentTree {
 
         System.out.println(getSum(arr,2,5));
 
+        update(arr, 2, 2);
+
+        System.out.println(getSum(arr, 2, 5));
     }
     
 }
