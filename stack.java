@@ -301,7 +301,27 @@ public class stack {
         return ans;
     }
 
-    
+    //lc1190
+    public String reverseParentheses(String s) {
+        Stack<StringBuilder> stack = new Stack<>();
+        StringBuilder curr = new StringBuilder();
+        
+        for(char ch : s.toCharArray()) {
+            if(ch == '(') {
+                stack.push(curr);
+                curr = new StringBuilder();
+            } 
+            else if(ch == ')') {
+                curr.reverse();
+                curr.insert(0, stack.pop());
+            } 
+            else {
+                curr.append(ch);
+            }
+        }
+        
+        return curr.toString();
+    }
     public static void main(String[] args) {
         //we can create stack using prebuilt stack library 
         //Stack<Integer>s=new Stack<>();
