@@ -233,6 +233,61 @@ public class Strings {
 
         
     }
+
+
+    //lc32
+    public int longestValidParentheses(String s) {
+        if(s.length()==0 || s.length()==1){
+            return 0;
+        }
+        
+        
+        int open=0;
+        int close=0;
+        int maxlength=0;
+        
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='('){
+                open++;
+            }else{
+                close++;
+            }
+
+            if(open==close){
+                maxlength=Math.max(maxlength,close*2);
+            }
+
+            if (close > open) {
+                open = 0;
+                close = 0;
+            }
+
+        }
+
+        open=0;
+        close=0;
+        for(int i=s.length()-1;i>=0;i--){
+            if(s.charAt(i)=='('){
+                open++;
+            }else{
+                close++;
+            }
+
+            if(open==close){
+                maxlength=Math.max(maxlength,open*2);
+            }
+
+            if (open > close) {
+                open = 0;
+                close = 0;
+            }
+
+        }
+
+        
+        return maxlength;
+        
+    }
     public static void main(String[] args) {
         // char arr[]={'a','b','c','d'};
         // String str="abcd";
