@@ -334,6 +334,31 @@ public class backtracking{
 
 //         return nQueens(board, 0);
 //     }
+
+
+    public List<String> generateParenthesis(int n) {
+        List<String> ans=new ArrayList<>();
+        generate(n,ans,new StringBuilder(""),0,0);
+        return ans;
+    }
+    public void generate(int n,List<String> answer,StringBuilder sb,int open ,int close){
+        if(sb.length()==2*n){
+            answer.add(sb.toString());
+            return;
+        }
+        if(open<n){
+            sb.append('(');
+            generate(n,answer,sb,open+1,close);
+            sb.deleteCharAt(sb.length()-1);
+        }
+        if(close<open){
+            sb.append(')');
+            generate(n,answer,sb,open,close+1);
+            sb.deleteCharAt(sb.length()-1);
+        }
+        
+
+    }
     public static void main(String[] args) {
         // // int arr[]=new int[5];
         // // changearr(arr, 0, 1);
