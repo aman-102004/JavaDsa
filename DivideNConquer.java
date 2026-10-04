@@ -150,6 +150,63 @@ public class DivideNConquer {
 
         return -1;
     }
+
+    //lc34
+    
+    public int[] searchRange(int[] nums, int target) {
+        
+        int start=0;
+        int end=nums.length-1;
+
+        int first=-1;int last=-1;
+
+
+        while(start<=end){
+            int mid=start+(end-start)/2;
+
+            if(nums[mid]==target){
+                first=mid;
+                end=mid-1;
+            }
+
+            else if(target<nums[mid]){
+                end=mid-1;
+
+            }else{
+                start=mid+1;
+            }
+        }
+
+        start=0;
+        end=nums.length-1;
+
+        while(start<=end){
+            int mid=start+(end-start)/2;
+
+            if(nums[mid]==target){
+                last=mid;
+                start=mid+1;
+            }
+            else if(target<nums[mid]){
+                end=mid-1;
+            }else{
+                start=mid+1;
+            }
+        }
+        
+
+        int ans[]=new int[2];
+        ans[0]=first;
+        ans[1]=last;
+
+        if(nums.length==1 && nums[0]==target){
+            return new int[]{0,0};
+        }
+        return ans;
+        
+        
+        }
+    
     public static void main(String[] args) {
         int arr[]={4,5,6,7,1,2,3};
         // quickSort(arr, 0, arr.length-1);
