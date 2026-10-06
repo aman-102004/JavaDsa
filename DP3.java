@@ -42,7 +42,7 @@ public class DP3 {
 
         int dp[][]=new int[n+1][m+1];
         //initialisation
-        //this initialisation means if the size of one string is 0 the total no of operation we need to convert it to string 2 is the length of that string 
+        //this initialisation means if the size of one string is 0 the total no of operation we need to convert it to string 2 is the length of that string a
         for(int i=0;i<=n;i++){
             for(int j=0;j<=m;j++){
                 if(i==0){

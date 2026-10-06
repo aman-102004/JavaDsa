@@ -628,6 +628,44 @@ public class LinkedList {
 
 
     // }
+    
+
+    // public ListNode deleteMiddle(ListNode head) {
+    //     int count=0;
+    //     ListNode temp=head;
+
+    //     while(temp!=null){
+    //         count++;
+    //         temp=temp.next;
+    //     }
+
+    //     if(count==1){
+    //         return null;
+    //     }
+    //     int mid=0;
+
+    //     if(count%2==0){
+    //         mid=count/2;
+    //     }else{
+    //         mid=(count-1)/2;
+    //     }
+
+    //     count=0;
+    //     temp=head;
+    //     ListNode prev=new ListNode(-1);
+    //     while(temp!=null){
+    //         if(count==mid){
+    //             prev.next=temp.next;
+    //         }
+    //         count++;
+    //         prev=temp;
+    //         temp=temp.next;
+            
+    //     }
+    //     return head;
+
+    // }
+
     public static void main(String[] args) {
         LinkedList ll=new LinkedList();
 
