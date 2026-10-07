@@ -288,6 +288,7 @@ public class Strings {
         return maxlength;
         
     }
+
     //lc2109
     public String addSpaces(String s, int[] spaces) {
         StringBuilder sb=new StringBuilder("");
@@ -304,6 +305,8 @@ public class Strings {
         }
         return sb.toString();
     }
+
+    
     public static void main(String[] args) {
         // char arr[]={'a','b','c','d'};
         // String str="abcd";
