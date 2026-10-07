@@ -288,6 +288,22 @@ public class Strings {
         return maxlength;
         
     }
+    //lc2109
+    public String addSpaces(String s, int[] spaces) {
+        StringBuilder sb=new StringBuilder("");
+        
+        int j=0;
+        
+        for(int i=0;i<s.length();i++){
+            if(j<spaces.length && spaces[j]==i){
+                sb.append(" ");
+                j++;
+            }
+            sb.append(s.charAt(i));
+            
+        }
+        return sb.toString();
+    }
     public static void main(String[] args) {
         // char arr[]={'a','b','c','d'};
         // String str="abcd";
