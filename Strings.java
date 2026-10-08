@@ -306,7 +306,54 @@ public class Strings {
         return sb.toString();
     }
 
-    
+
+    //lc692
+//     class Solution {
+//     static class info implements Comparable<info>{
+//         String s;
+//         int freq;
+
+//         public info(String s,int freq){
+//             this.s=s;
+//             this.freq=freq;
+//         }
+
+//         public int compareTo(info i2){
+//             if (this.freq != i2.freq) {
+//                 return i2.freq - this.freq;
+//             }
+
+//             return this.s.compareTo(i2.s);
+//         }
+//     }
+//     public List<String> topKFrequent(String[] words, int k) {
+//         PriorityQueue<info> pq=new PriorityQueue<>();
+//         HashMap<String,Integer> map=new HashMap<>();
+//         for(int i=0;i<words.length;i++){
+//             if(map.get(words[i])!=null){
+//                 String word=words[i];
+//                 pq.removeIf(x -> x.s.equals(word));
+//                 int newfreq=map.get(words[i])+1;
+//                 map.put(words[i],newfreq);
+//                 pq.add(new info(words[i],newfreq));
+//             }else{
+//                 pq.add(new info(words[i],1));
+//                 map.put(words[i],1);
+//             }
+//         }
+
+//         int i=1;
+//         List<String> ans=new ArrayList<>();
+//         while(i<=k){
+//             ans.add(pq.remove().s);
+
+//             i++;
+//         }
+
+//         return ans;
+
+//     }
+// }
     public static void main(String[] args) {
         // char arr[]={'a','b','c','d'};
         // String str="abcd";
