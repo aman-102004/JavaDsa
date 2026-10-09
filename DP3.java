@@ -380,6 +380,34 @@ public class DP3 {
         }
         return dp[0];
     }
+
+    //lc740
+    public int deleteAndEarn(int[] nums) {
+        int max=0;
+        for(int num:nums){
+            max=Math.max(max,num);
+        }
+        
+        int points[]=new int[max+1];
+        //point[i] represents the point you earn from taking number i from nums array
+        for(int num:nums){
+            points[num]+=num;
+        }
+
+        int dp[]=new int[max+1];
+        //dp[i]= reprents maximum points you can earn considering elements from 1 to i;
+        
+
+        for(int i=1;i<max+1;i++){
+            //include
+            int include=points[i]+dp[i-2];
+            int exclude=dp[i-1];
+            dp[i]=Math.max(include,exclude);
+        }
+
+        return dp[max];
+    }
+
     public static void main(String[] args) {
         //CONVERTING STRING 1 TO 2 
         //3 operations possible insert,remove,replace for each opeation cost is 1
