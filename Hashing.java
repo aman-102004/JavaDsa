@@ -186,6 +186,63 @@ public class Hashing {
 
         return max;
     }
+
+    //lc1171
+    public ListNode removeZeroSumSublists(ListNode head) {
+        if(head==null){
+            return null;
+        }
+        ArrayList<Integer> prefixSum=new ArrayList<>();
+        ListNode dummy=new ListNode(0);
+        dummy.next=head;
+        ListNode temp=head;
+        
+        prefixSum.add(0);
+        int i=1;
+        while(temp!=null){
+            prefixSum.add(prefixSum.get(i-1)+temp.val);
+            i++;
+            temp=temp.next;
+        }
+        int prev=0;
+        int curr=0;
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int j=0;j<prefixSum.size();j++){
+            if(map.containsKey(prefixSum.get(j))){
+                prev=map.get(prefixSum.get(j));
+                curr=j;
+            }
+            map.put(prefixSum.get(j),j);
+        }
+
+
+        temp=dummy;
+        int k=0;
+        ListNode previous=null;
+        ListNode next=null;
+        while(temp!=null){
+            if(k==prev){
+                previous=temp;
+            }
+            if(k==curr){
+                next=temp.next;
+            }
+            k++;
+            temp=temp.next;
+        }
+
+        previous.next=next;
+
+        return dummy.next;
+
+
+
+
+
+
+        
+        
+    }
     public static void main(String[] args) {
         //create
         //HashMaps Are unordered maps there is no fixed order of storage of data in a hashmap
