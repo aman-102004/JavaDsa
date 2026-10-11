@@ -188,7 +188,7 @@ public class Hashing {
     }
 
     //lc1171
-    public ListNode removeZeroSumSublists(ListNode head) {
+     public ListNode removeZeroSumSublists(ListNode head) {
         if(head==null){
             return null;
         }
@@ -204,44 +204,31 @@ public class Hashing {
             i++;
             temp=temp.next;
         }
-        int prev=0;
-        int curr=0;
-        HashMap<Integer,Integer> map=new HashMap<>();
-        for(int j=0;j<prefixSum.size();j++){
-            if(map.containsKey(prefixSum.get(j))){
-                prev=map.get(prefixSum.get(j));
-                curr=j;
-            }
-            map.put(prefixSum.get(j),j);
+        
+        
+
+        HashMap<Integer, ListNode> map = new HashMap<>();
+
+        temp = dummy;
+        int sum = 0;
+
+        while (temp != null) {
+            sum += temp.val;
+            map.put(sum, temp);
+            temp = temp.next;
         }
 
 
-        temp=dummy;
-        int k=0;
-        ListNode previous=null;
-        ListNode next=null;
-        while(temp!=null){
-            if(k==prev){
-                previous=temp;
-            }
-            if(k==curr){
-                next=temp.next;
-            }
-            k++;
-            temp=temp.next;
-        }
+        temp = dummy;
+        sum = 0;
 
-        previous.next=next;
+        while (temp != null) {
+            sum += temp.val;
+            temp.next = map.get(sum).next;
+            temp = temp.next;
+        }
 
         return dummy.next;
-
-
-
-
-
-
-        
-        
     }
     public static void main(String[] args) {
         //create

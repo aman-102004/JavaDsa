@@ -486,6 +486,30 @@ public class BinaryTress2 {
 
     // }
 
+    //lc3997
+    // int ans=0;
+    // public int countDominantNodes(TreeNode root) {
+        
+    //     postOrder(root);
+    //     return ans;
+    // }
+
+    // public int postOrder(TreeNode root){
+    //     if(root==null){
+    //         return Integer.MIN_VALUE;
+    //     }
+
+        
+
+    //     int leftMax=postOrder(root.left);
+    //     int rightMax=postOrder(root.right);
+
+    //     if(root.val>=leftMax && root.val>=rightMax){
+    //         ans++;
+    //     }
+
+    //     return Math.max(root.val,Math.max(leftMax,rightMax));
+    // }
     
     public static void main(String[] args) {
            /*      1
