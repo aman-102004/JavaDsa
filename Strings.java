@@ -354,6 +354,45 @@ public class Strings {
 
 //     }
 // }
+
+    //lc345
+    public String reverseVowels(String s) {
+        char[] stringArray=s.toCharArray();
+        int left=0;
+        int right=s.length()-1;
+        boolean leftvowel=true;
+        boolean rightvowel=true;
+        while(left<right){
+            char start=stringArray[left];
+            char end=stringArray[right];
+
+            if(start!='a' && start!='A' && start!='e'&& start!='E'&&start!='i'&& start!='I'&& start!='o'&& start!='O' && start!='u'&& start!='U'){
+                leftvowel=false;
+                left++;
+            }else{
+                leftvowel=true;
+            }
+            if(end!='a' && end!='A'&& end!='e'&& end!='E'&& end!='i'&& end!='I' && end!='o'&& end!='O' && end!='u'&& end!='U'){
+                rightvowel=false;
+                right--;
+            }else{
+                rightvowel=true;
+            }
+
+            if(leftvowel && rightvowel){
+                char temp=stringArray[right];
+                stringArray[right]=stringArray[left];
+                stringArray[left]=temp;
+                right--;
+                left++;
+            }
+
+
+        }
+
+        return new String(stringArray);
+    }
+    
     public static void main(String[] args) {
         // char arr[]={'a','b','c','d'};
         // String str="abcd";
