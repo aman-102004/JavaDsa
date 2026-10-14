@@ -28,6 +28,31 @@ public class TwoPointer{
         return ans;
     }
 
+    //lc2874
+    public long maximumTripletValue(int[] nums) {
+        int prefixmax[]=new int[nums.length];
+        prefixmax[0]=nums[0];
+        for(int i=1;i<nums.length;i++){
+            prefixmax[i]=Math.max(prefixmax[i-1],nums[i]);
+        }
+
+        int suffixmax[]=new int[nums.length];
+        suffixmax[nums.length-1]=nums[nums.length-1];
+        for(int i=nums.length-2;i>=0;i--){
+            suffixmax[i]=Math.max(suffixmax[i+1],nums[i]);
+        }
+
+        long ans=0;
+
+        for(int i=1;i<prefixmax.length-1;i++){
+            long diff=prefixmax[i-1]-nums[i];
+            long mul=diff*suffixmax[i+1];
+            ans=Math.max(ans,mul);
+        }
+
+        return ans;
+    }
+
     public static void main(String[] args) {
         
     }
