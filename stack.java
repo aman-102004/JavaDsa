@@ -341,6 +341,44 @@ public class stack {
         return st.isEmpty();
 
     }
+
+    //lc316
+    public String removeDuplicateLetters(String s) {
+        int freq[]=new int[26];
+        boolean[] visited = new boolean[26];
+
+        for (int i = 0;i<s.length();i++) {
+            freq[s.charAt(i) - 'a']++;
+        }
+
+        Stack<Character> st=new Stack<>();
+
+        for(int i=0;i<s.length();i++){
+            char curr=s.charAt(i);
+            freq[curr-'a']--;
+
+            if (visited[curr-'a']) {
+                continue;
+            }
+
+             while (!st.isEmpty() && st.peek() > curr && freq[st.peek() - 'a'] > 0) {
+                 visited[st.pop() - 'a'] = false;
+            }
+
+            st.push(curr);
+            visited[curr - 'a'] = true;
+        }
+
+        StringBuilder sb=new StringBuilder("");
+        while(!st.isEmpty()){
+            sb.append(st.pop());
+        }
+
+        return sb.reverse().toString();
+
+        
+    }
+    
     public static void main(String[] args) {
         //we can create stack using prebuilt stack library 
         //Stack<Integer>s=new Stack<>();
