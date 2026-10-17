@@ -408,6 +408,44 @@ public class DP3 {
         return dp[max];
     }
 
+    //lc1626
+    public int bestTeamScore(int[] scores, int[] ages) {
+        int team[][]=new int[scores.length][2];
+
+        for(int i=0;i<scores.length;i++){
+            team[i][0]=ages[i];
+            team[i][1]=scores[i];
+        }
+
+        Arrays.sort(team,(a,b)->{
+            if(a[0]!=b[0]){
+                return Integer.compare(a[0],b[0]);
+            }else{
+                return Integer.compare(a[1],b[1]);
+            }
+        });
+
+        int dp[]=new int[scores.length];
+        int ans=0;
+        for(int i=0;i<scores.length;i++){
+            dp[i]=team[i][1];
+
+            for(int j=0;j<i;j++){
+                if(team[j][1]<=team[i][1]){
+                    dp[i]=Math.max(dp[i],dp[j]+team[i][1]);
+                }
+            }
+            ans=Math.max(ans,dp[i]);
+        }
+
+        
+
+        
+
+        return ans;
+
+    }
+    
     public static void main(String[] args) {
         //CONVERTING STRING 1 TO 2 
         //3 operations possible insert,remove,replace for each opeation cost is 1
