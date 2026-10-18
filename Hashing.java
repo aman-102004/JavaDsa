@@ -230,6 +230,34 @@ public class Hashing {
 
         return dummy.next;
     }
+
+    //lc202
+    public boolean isHappy(int n) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+
+        int sum=0;
+        int num=n;
+        while(sum!=1){
+            if(map.get(num)!=null && map.get(num)==1){
+                return false;
+            }
+            map.put(num,1);
+            while(num!=0){
+                sum+=(num%10)*(num%10);
+                num=num/10;
+            }
+            num=sum;
+            if(sum==1){
+                break;
+            }else{
+                sum=0;
+            }
+            
+        }
+
+        return true;
+    }
+    
     public static void main(String[] args) {
         //create
         //HashMaps Are unordered maps there is no fixed order of storage of data in a hashmap
