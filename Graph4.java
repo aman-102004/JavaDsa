@@ -239,4 +239,57 @@ public class Graph4 {
 // }
 
 
+//lc841
+class Solution {
+    static class Edge{
+        int src;
+        int dest;
+        public Edge(int src,int dest){
+            this.src=src;
+            this.dest=dest;
+        }
+    }
+
+    public void createGraph(ArrayList<Edge> graph[],List<List<Integer>> room){
+        
+        for(int i=0;i<room.size();i++){
+            graph[i]=new ArrayList<>();
+            for(int j=0;j<room.get(i).size();j++){
+                graph[i].add(new Edge(i,room.get(i).get(j)));
+            }
+            
+        }
+    }
+
+    public void dfs(int curr,ArrayList<Edge> graph[],boolean visited[]){
+        visited[curr]=true;
+
+        for(int i=0;i<graph[curr].size();i++){
+            Edge e=graph[curr].get(i);
+            if(!visited[e.dest]){
+                dfs(e.dest,graph,visited);
+            }
+
+        }
+    }
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        int v=rooms.size();
+        ArrayList<Edge> graph[]=new ArrayList[v];
+
+        createGraph(graph,rooms);
+
+        boolean visited[]=new boolean[rooms.size()];
+
+        dfs(0,graph,visited);
+
+        for(int i=0;i<visited.length;i++){
+            if(visited[i]==false){
+                return false;
+            }
+        }
+        return true;
+
+    }
+}
+
 
