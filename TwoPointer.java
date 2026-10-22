@@ -53,6 +53,34 @@ public class TwoPointer{
         return ans;
     }
 
+    //lc611
+    public int triangleNumber(int[] nums) {
+
+        //approach used =fixing the biggest side after sorting
+        //take two pointer
+        //if codn satisfied all triangle in rangle j to k can be include as array is sorted then k--
+        //else it means the sum is smaller then j++;
+        Arrays.sort(nums);
+        int count=0;
+        for(int i=nums.length-1;i>=0;i--){
+            int j=0;
+            int k=i-1;
+
+            while(j<k){
+                if(nums[j]+nums[k]>nums[i]){
+                    count+=k-j;
+                    k--;
+                }else{
+                    j++;
+                }
+            }
+
+        }
+
+        return count;
+    }
+
+    
     public static void main(String[] args) {
         
     }
