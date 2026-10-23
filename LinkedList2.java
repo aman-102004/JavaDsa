@@ -32,6 +32,34 @@ public class LinkedList2 {
     //     temp.next=null;
         
     // }
+
+
+
+    //lc203
+    //public ListNode removeElements(ListNode head, int val) {
+    //     if(head==null){
+    //         return null;
+    //     }
+        
+    //     ListNode temp=head;
+    //     ListNode dummy=new ListNode(-1);
+    //     dummy.next=temp;
+
+    //     ListNode prev=dummy;
+
+    //     while(temp!=null){
+    //         if(temp.val==val){
+    //             prev.next=temp.next;
+                
+    //         }else{
+    //             prev=prev.next;
+    //         }
+    //         temp=temp.next;
+            
+
+    //     }
+    //     return dummy.next;
+    // }
     
     public static void main(String[] args) {
         //create

@@ -80,7 +80,58 @@ public class TwoPointer{
         return count;
     }
 
-    
+
+    //lc392
+     public boolean isSubsequence(String s, String t) {
+
+        //appraoch 1
+        // int n=s.length();
+        // int m=t.length();
+        // int dp[][]=new int[n+1][m+1];
+
+        // for(int i=1;i<n+1;i++){
+        //     for(int j=1;j<m+1;j++){
+        //         if(s.charAt(i-1)==t.charAt(j-1)){
+        //             dp[i][j]=dp[i-1][j-1]+1;
+        //         }else{
+        //             int ans1=dp[i-1][j];
+        //             int ans2=dp[i][j-1];
+        //             dp[i][j]=Math.max(ans1,ans2);
+        //         }
+        //     }
+        // }
+
+        // return dp[n][m]==s.length()?true:false;
+
+
+        //approach 2
+        if(s.length()==0){
+            return true;
+        }else if(s.length()==1 && t.length()==1){
+           return s.charAt(0)==t.charAt(0)?true:false;
+        }
+
+        
+
+
+        int pointer1=0;
+        int pointer2=0;
+
+        while(pointer1<s.length() && pointer2<t.length()){
+            if(s.charAt(pointer1)==t.charAt(pointer2)){
+                pointer1++;
+                pointer2++;
+            }else{
+                pointer2++;
+            }
+            if(pointer1==s.length()){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static void main(String[] args) {
         
     }
