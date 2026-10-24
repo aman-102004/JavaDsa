@@ -75,6 +75,52 @@ public class Heap {
             return p2.val-this.val;
         }
     }
+
+    //lc414
+    static class info implements Comparable<info>{
+        int num;
+        public info(int num){
+            this.num=num;
+        }
+
+        @Override
+        public int compareTo(info i2){
+            return Integer.compare(i2.num, this.num);
+        }
+    }
+    
+    public int thirdMax(int[] nums) {
+        
+        HashMap<Integer,Integer> map=new HashMap<>();
+        PriorityQueue<info> pq=new PriorityQueue<>();
+        for(int i=0;i<nums.length;i++){
+            if(map.get(nums[i])!=null){
+                continue;
+            }
+
+            pq.add(new info(nums[i]));
+            map.put(nums[i],1);
+
+        }
+
+        if(pq.size()<3){
+            return pq.remove().num;
+        }
+
+        int count=0; 
+        int ans=0;
+
+        while(count<3){
+            ans=pq.remove().num;
+            count++;
+
+        }
+
+        return ans;
+
+
+        
+    }
     public static void main(String[] args) {
         // PriorityQueue<Integer> pq=new PriorityQueue<>(Comparator.reverseOrder());//use this comparator.reverse order to reverse the priortiy from default that is ascending to descending
 
