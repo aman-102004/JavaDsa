@@ -240,56 +240,89 @@ public class Graph4 {
 
 
 //lc841
-class Solution {
-    static class Edge{
-        int src;
-        int dest;
-        public Edge(int src,int dest){
-            this.src=src;
-            this.dest=dest;
-        }
-    }
+// class Solution {
+//     static class Edge{
+//         int src;
+//         int dest;
+//         public Edge(int src,int dest){
+//             this.src=src;
+//             this.dest=dest;
+//         }
+//     }
 
-    public void createGraph(ArrayList<Edge> graph[],List<List<Integer>> room){
+//     public void createGraph(ArrayList<Edge> graph[],List<List<Integer>> room){
         
-        for(int i=0;i<room.size();i++){
-            graph[i]=new ArrayList<>();
-            for(int j=0;j<room.get(i).size();j++){
-                graph[i].add(new Edge(i,room.get(i).get(j)));
-            }
+//         for(int i=0;i<room.size();i++){
+//             graph[i]=new ArrayList<>();
+//             for(int j=0;j<room.get(i).size();j++){
+//                 graph[i].add(new Edge(i,room.get(i).get(j)));
+//             }
             
-        }
-    }
+//         }
+//     }
 
-    public void dfs(int curr,ArrayList<Edge> graph[],boolean visited[]){
-        visited[curr]=true;
+//     public void dfs(int curr,ArrayList<Edge> graph[],boolean visited[]){
+//         visited[curr]=true;
 
-        for(int i=0;i<graph[curr].size();i++){
-            Edge e=graph[curr].get(i);
-            if(!visited[e.dest]){
-                dfs(e.dest,graph,visited);
+//         for(int i=0;i<graph[curr].size();i++){
+//             Edge e=graph[curr].get(i);
+//             if(!visited[e.dest]){
+//                 dfs(e.dest,graph,visited);
+//             }
+
+//         }
+//     }
+//     public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+//         int v=rooms.size();
+//         ArrayList<Edge> graph[]=new ArrayList[v];
+
+//         createGraph(graph,rooms);
+
+//         boolean visited[]=new boolean[rooms.size()];
+
+//         dfs(0,graph,visited);
+
+//         for(int i=0;i<visited.length;i++){
+//             if(visited[i]==false){
+//                 return false;
+//             }
+//         }
+//         return true;
+
+//     }
+// }
+
+
+//lc200
+public int numIslands(char[][] grid) {
+        int count=0;
+        int n=grid.length;
+        int m=grid[0].length;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]=='1'){
+                    count++;
+                    dfs(grid,i,j);
+                }
             }
-
         }
+        return count;
     }
-    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
-        int v=rooms.size();
-        ArrayList<Edge> graph[]=new ArrayList[v];
 
-        createGraph(graph,rooms);
+    public void dfs(char[][] grid,int i,int j){
+        int m=grid.length;
+        int n=grid[0].length;
 
-        boolean visited[]=new boolean[rooms.size()];
-
-        dfs(0,graph,visited);
-
-        for(int i=0;i<visited.length;i++){
-            if(visited[i]==false){
-                return false;
-            }
+        if(i<0 || j<0 || i>=m || j>=n || grid[i][j]=='0'){
+            return;
         }
-        return true;
 
+        grid[i][j]='0';
+
+        dfs(grid,i+1,j);
+        dfs(grid,i-1,j);
+        dfs(grid,i,j+1);
+        dfs(grid,i,j-1);
     }
-}
 
 
