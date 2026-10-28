@@ -23,6 +23,36 @@ public class Queue3rd {
 
     //implementing queue using deque use opposite operations add from last adn remove from first
 
+
+    //lc1544
+    public String makeGood(String s) {
+        if(s.length()==0){
+            return "";
+        }else if(s.length()==1){
+            return s;
+        }
+        Deque<Character> dq=new LinkedList<>();
+        dq.addLast(s.charAt(0));
+        for(int i=1;i<s.length();i++){
+            char curr = s.charAt(i);
+
+            if (!dq.isEmpty() &&
+                Math.abs(dq.peekLast() - curr) == 32) {
+                dq.removeLast();
+            } else {
+                dq.addLast(curr);
+            }
+        }
+
+        StringBuilder sb=new StringBuilder("");
+
+        while(!dq.isEmpty()){
+            sb.append(dq.removeFirst());
+        }
+
+        return sb.toString();
+    }
+    
     static class Queue{
         Deque<Integer> deque=new LinkedList<>();
 
