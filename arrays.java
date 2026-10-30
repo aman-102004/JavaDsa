@@ -320,6 +320,32 @@ public class arrays {
 
         return -1;
     }
+
+    //lc 434
+    public int countSegments(String s) {
+        
+        if(s.length()==0){
+            return 0;
+        }
+        int segments=1;
+
+        s=s.trim();
+        
+
+        for(int i=0;i<s.length()-1;i++){
+            if(s.charAt(i)==' ' && s.charAt(i+1)!=' '){
+                segments++;
+            }
+        }
+
+        if(segments-1==s.length()){
+            return 0;
+        }
+
+        return segments;
+        
+    }
+    
     public static void main(Strings[] args) {
         // linear search
 
