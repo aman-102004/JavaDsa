@@ -446,6 +446,45 @@ public class DP3 {
 
     }
     
+    //lc374
+    public int[] calculate(String str){
+        HashMap<Character,Integer> map=new HashMap<>();
+
+        for(int i=0;i<str.length();i++){
+            if(map.get(str.charAt(i))!=null){
+                map.put(str.charAt(i),map.get(str.charAt(i))+1);
+            }else{
+                map.put(str.charAt(i),1);
+            }
+        }
+
+        int zeros = map.getOrDefault('0', 0);
+        int ones = map.getOrDefault('1', 0);
+
+        return new int[]{zeros, ones};
+    }
+    public int findMaxForm(String[] strs, int m, int n) {
+        
+        int dp[][]=new int[m+1][n+1];
+        //dp[i][j]=max strings we can take with atmost i 0 and atmost j 1
+         for(String str : strs) {
+
+            int[] count = calculate(str);
+
+            int zeros = count[0];
+            int ones = count[1];
+
+            for(int i = m; i >= zeros; i--) {
+                for(int j = n; j >= ones; j--) {
+
+                    dp[i][j] = Math.max(dp[i][j],1 + dp[i-zeros][j-ones]);
+                }
+            }
+        }
+
+        return dp[m][n];
+    }
+    
     public static void main(String[] args) {
         //CONVERTING STRING 1 TO 2 
         //3 operations possible insert,remove,replace for each opeation cost is 1
