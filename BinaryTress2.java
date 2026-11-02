@@ -511,6 +511,36 @@ public class BinaryTress2 {
     //     return Math.max(root.val,Math.max(leftMax,rightMax));
     // }
     
+
+    //lc129
+    // int sum=0;
+    // public int sumNumbers(TreeNode root) {
+
+    // nsum(root,0);
+    
+    // return sum;
+        
+    // }
+
+    // public void nsum(TreeNode root,int currsum){
+    //     if(root == null){ 
+    //         return ;
+    //     }
+        
+    //     currsum=((currsum*10)+root.val);
+
+    //     if (root.left == null && root.right == null) {
+    //         sum +=currsum;
+    //         return;
+    //     }
+    //     nsum(root.left,currsum);
+    //     nsum(root.right,currsum);
+
+        
+
+    // }
+
+    
     public static void main(String[] args) {
            /*      1
                  /    \
