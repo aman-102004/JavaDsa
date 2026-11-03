@@ -363,6 +363,22 @@ public class arrays {
         return ans;
     }
     
+    //lc3736
+    public int minMoves(int[] nums) {
+        int ans=0;
+
+        int max=nums[0];
+        for(int num:nums){
+            max=Math.max(max,num);
+        }
+
+        for(int num:nums){
+            ans+=max-num;
+        }
+
+        return ans;
+    }
+    
     public static void main(Strings[] args) {
         // linear search
 
