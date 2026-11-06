@@ -400,6 +400,27 @@ public class arrays {
 
         return count;
     }
+
+
+    //lc2148
+    public int countElements(int[] nums) {
+        int ans=0;
+
+        int max=Integer.MIN_VALUE;
+        int min=Integer.MAX_VALUE;
+        for(int i=0;i<nums.length;i++){
+            max=Math.max(max,nums[i]);
+            min=Math.min(min,nums[i]);
+        }
+
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>min && nums[i]<max){
+                ans++;
+            }
+        }
+
+        return ans;
+    }
     
     public static void main(Strings[] args) {
         // linear search
