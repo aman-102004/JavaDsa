@@ -414,6 +414,55 @@ public class Strings {
         return ans;
     }
     
+    //lc6
+    public String convert(String s, int numRows) {
+        if(numRows==1 || numRows>=s.length()) {
+            return s;
+        }
+
+        char matrix[][]=new char[numRows][s.length()];
+
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                matrix[i][j]=' ';
+            }
+        }
+
+        int n=numRows-2;
+        int count=0;
+        for(int i=0;i<matrix[0].length;i++){
+            for(int j=0;j<numRows && count<s.length();j++){
+                if(i%(numRows-1)==0){
+                    matrix[j][i]=s.charAt(count++);
+                    
+                }else{
+                    if(j==0 && n>0){
+                        matrix[n][i]=s.charAt(count++);
+                        
+                        n--;
+                    }
+                }
+            }
+
+            if(i%(numRows-1)==0) {
+                n=numRows-2;
+            }
+        }
+
+        StringBuilder sb=new StringBuilder("");
+
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                if(matrix[i][j]!=' '){
+                    sb.append(matrix[i][j]);
+                }
+
+            }
+        }
+
+        return sb.toString();
+    }
+    
     public static void main(String[] args) {
         // char arr[]={'a','b','c','d'};
         // String str="abcd";
