@@ -540,6 +540,54 @@ public class BinaryTress2 {
 
     // }
 
+
+    //lc637
+    public List<Double> averageOfLevels(TreeNode root) {
+        List<Double> ans=new ArrayList<>();
+
+        levelorder(root,ans);
+        return ans;
+        
+    }
+
+    public void levelorder(TreeNode root,List<Double> ans){
+        if(root==null){
+            return;
+        }
+
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+        q.add(null);
+        double sum=0;
+        double count=0;
+        while(!q.isEmpty()){
+            TreeNode curr=q.remove();
+
+            if(curr==null){
+                ans.add(sum/count);
+                sum=0;
+                count=0;
+                if(q.isEmpty()){
+                    break;
+                }else{
+                    q.add(null);
+                }
+
+            }else{
+                sum+=curr.val;
+                count++;
+                if(curr.left!=null){
+                    q.add(curr.left);
+                }
+                if(curr.right!=null){
+                    q.add(curr.right);
+                }
+            }
+        }
+
+
+        
+    }
     
     public static void main(String[] args) {
            /*      1
