@@ -345,6 +345,45 @@ public class DP2 {
     //     return dp[n][m];
     // }
     
+
+    //lc 3693
+     public int climbStairs(int n, int[] costs) {
+        int dp[]=new int[n+1];
+        
+        return memoization(n,costs,dp);
+
+    }
+
+    public int memoization(int n,int costs[],int dp[]){
+        if(n==0){
+            return 0;
+        }
+
+        if(dp[n]!=0){
+            return dp[n];
+        }
+        int cost1 = Integer.MAX_VALUE;
+        int cost2 = Integer.MAX_VALUE;
+        int cost3 = Integer.MAX_VALUE;
+
+        if(n >= 1) {
+            cost1= memoization(n-1,costs,dp)+costs[n-1]+1;
+        }
+
+        if(n >= 2) {
+            cost2= memoization(n-2,costs,dp)+costs[n-1] + 4;
+        }
+
+        if(n >= 3) {
+            cost3=memoization(n-3,costs,dp)+costs[n-1] + 9;
+        }
+
+        dp[n]=Math.min(cost1,Math.min(cost2, cost3));
+
+
+        return dp[n];
+    }
+    
     public static void main(String[] args) {
         //ClIMBING STAIRS
         // System.out.println(ClimbingStairsRecursion(5));
