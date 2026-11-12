@@ -154,6 +154,37 @@ public class TwoPointer{
         return cost;
     }
 
+    //lc3105
+    public int longestMonotonicSubarray(int[] nums) {
+        int len=1;
+        int len1=1;
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]>nums[i-1]){
+                len++;
+            }else{
+                len1=Math.max(len,len1);
+                len=1;
+            }
+        }
+        len1=Math.max(len,len1);
+        len=1;
+        int len2=1;
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]<nums[i-1]){
+                len++;
+            }else{
+                len2=Math.max(len,len2);
+                len=1;
+            }
+        }
+
+        len2=Math.max(len,len2);
+
+        return Math.max(len1,len2);
+
+
+    }
+
     public static void main(String[] args) {
         
     }
