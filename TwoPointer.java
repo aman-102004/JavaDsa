@@ -228,6 +228,31 @@ public class TwoPointer{
         }
     }
 
+    //3364
+
+    public int minimumSumSubarray(List<Integer> nums, int l, int r) {
+        int min=Integer.MAX_VALUE;
+
+        for(int start=0;start<nums.size();start++){
+
+            int sum=0;
+
+            for(int end=start;end<nums.size() && end<=start+r;end++){
+                sum+=nums.get(end);
+                
+                int len=end-start+1;
+
+                if(len>=l && len<=r && sum>0){
+                    min=Math.min(min,sum);
+                }
+
+            }
+
+        }
+
+        return min == Integer.MAX_VALUE ? -1:min;
+    }
+
     public static void main(String[] args) {
         
     }
