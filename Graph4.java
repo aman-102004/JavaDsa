@@ -416,3 +416,45 @@ public class Graph4 {
     
         
     // }
+
+
+
+    //lc695
+    public int maxAreaOfIsland(int[][] grid) {
+        
+        
+        int n=grid.length;
+        int m=grid[0].length;
+        int ans=0;
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                int curr[]={0};
+                if(grid[i][j]==1){
+                    
+                    dfs(grid,i,j,curr);
+                }
+                ans=Math.max(ans,curr[0]);
+            }
+        }
+
+        return ans;
+    }
+
+    public static void dfs(int grid[][],int i,int j,int curr[]){
+        int n=grid.length;
+        int m=grid[0].length;
+
+        if(i<0 || j<0 || i>=n || j>=m || grid[i][j]==0 ){
+            return;
+            
+        }else if(grid[i][j]==1){
+            curr[0]++;
+        }
+
+        grid[i][j]=0;
+        dfs(grid,i+1,j,curr);
+        dfs(grid,i-1,j,curr);
+        dfs(grid,i,j+1,curr);
+        dfs(grid,i,j-1,curr);
+    }
