@@ -421,7 +421,69 @@ public class arrays {
 
         return ans;
     }
-    
+
+    //lc735
+    public int[] asteroidCollision(int[] asteroids) {
+
+        Stack<Integer> s = new Stack<>();
+
+        for(int i = 0; i < asteroids.length; i++) {
+
+            boolean flag = true;
+
+            while(!s.isEmpty() && s.peek() > 0 && asteroids[i] < 0) {
+
+                if(Math.abs(asteroids[i]) > s.peek()) {
+
+                    s.pop();
+
+                }
+
+                else if(Math.abs(asteroids[i]) == s.peek()) {
+
+                    s.pop();
+
+                    flag = false;
+
+                    break;
+
+                }
+
+                else {
+
+                    flag = false;
+
+                    break;
+
+                }
+
+            }
+
+            if(flag) {
+
+                s.add(asteroids[i]);
+
+            }
+
+        }
+
+        int ans[] = new int[s.size()];
+
+        int j = ans.length - 1;
+
+        while(!s.isEmpty()) {
+
+            ans[j] = s.pop();
+
+            j--;
+
+        }
+
+        return ans;
+
+    }
+
+
     public static void main(Strings[] args) {
         // linear search
 
