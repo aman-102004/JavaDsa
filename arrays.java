@@ -421,6 +421,43 @@ public class arrays {
 
         return ans;
     }
+
+    //3940
+    public int[] limitOccurrences(int[] nums, int k) {
+        int count=1;
+        int negativecount=0;
+        for(int i=1;i<nums.length;i++){
+            if(Math.abs(nums[i])==Math.abs(nums[i-1])){
+                count++;
+            }
+
+            if(Math.abs(nums[i])!=Math.abs(nums[i-1])){
+                count=1;
+            }
+
+            if(count>k){
+                nums[i]=(-nums[i]);
+                negativecount++;
+            }
+
+            
+        }
+
+        int ans[]=new int[nums.length-negativecount];
+        int j=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]<0){
+                continue;
+            }else{
+                ans[j]=nums[i];
+                j++;
+            }
+
+        }
+
+        return ans;
+
+    }
     
     public static void main(Strings[] args) {
         // linear search
