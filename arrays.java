@@ -364,7 +364,7 @@ public class arrays {
     }
     
     //lc3736
-    public int minMoves(int[] nums) {
+    public int minMoves2(int[] nums) {
         int ans=0;
 
         int max=nums[0];
