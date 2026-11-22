@@ -336,6 +336,65 @@ public class backtracking{
 //     }
 
 
+//lc473
+public boolean makesquare(int[] matchsticks) {
+        
+        Arrays.sort(matchsticks);
+        int sum=0;
+        for(int match:matchsticks){
+            sum+=match;
+        }
+
+        if(sum%4!=0){
+            return false;
+        }
+
+        int side=sum/4;
+        if(matchsticks.length < 4){
+            return false;
+        } 
+        if(matchsticks[matchsticks.length - 1] > side){
+            return false;
+        } 
+        boolean visited[]=new boolean[matchsticks.length];
+        return dfs(matchsticks,side,0,0,matchsticks.length-1,visited)?true:false;
+
+        
+
+        
+    }
+
+    public boolean dfs(int[] matchsticks,int side,int currsum,int sidescompleted,int index,boolean visited[]){
+        
+
+        if(sidescompleted == 3) {
+            return true;
+        }
+
+        
+
+        if(currsum==side){
+            return dfs(matchsticks,side,0,sidescompleted+1,matchsticks.length-1,visited);
+        }
+        
+        for(int i=index;i>=0;i--){
+            if(visited[i] || currsum + matchsticks[i] > side){
+                continue;
+            }
+            
+            
+            visited[i]=true;
+            if(dfs(matchsticks, side, currsum+matchsticks[i],sidescompleted, i - 1, visited)) {
+                return true;
+            }
+            visited[i]=false;
+
+        }
+
+        return false;
+
+
+    }
 
     public static void main(String[] args) {
         // // int arr[]=new int[5];
