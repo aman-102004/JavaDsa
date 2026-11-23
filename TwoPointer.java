@@ -270,6 +270,30 @@ public class TwoPointer{
 
     }
 
+
+    //lc1352
+    // ArrayList<Integer> list;
+    // public ProductOfNumbers() {
+    //     list=new ArrayList<>();
+
+        
+    // }
+    
+    // public void add(int num) {
+    //     list.add(num);
+        
+    // }
+    
+    // public int getProduct(int k) {
+    //     int start=list.size()-k;
+    //     int product=1;
+    //     for(int i=start;i<list.size();i++){
+    //         product*=list.get(i);
+    //     }
+
+    //     return product;
+        
+    // }
     public static void main(String[] args) {
         
     }
