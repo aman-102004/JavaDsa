@@ -294,6 +294,45 @@ public class TwoPointer{
     //     return product;
         
     // }
+
+
+    //lc3889
+    public int mirrorFrequency(String s) {
+        boolean freqAB[]=new boolean[26];
+        boolean freqNB[]=new boolean[10];
+        int freqA[]=new int[26];
+        int freqN[]=new int[10];
+        for(int i=0;i<s.length();i++){
+            if(!Character.isDigit(s.charAt(i))){
+                freqA[s.charAt(i)-'a']++;
+            }else{
+                freqN[s.charAt(i)-'0']++;
+
+            }
+
+        }
+
+        int ans=0;
+        for(int i=0;i<s.length();i++){
+
+            if(!Character.isDigit(s.charAt(i)) && freqAB[s.charAt(i)-'a']==false){
+                freqAB[s.charAt(i)-'a']=true;
+                int mirror=25-(s.charAt(i)-'a');
+                freqAB[mirror]=true;
+                ans+=Math.abs(freqA[s.charAt(i)-'a']-freqA[mirror]);
+                
+            }else if(Character.isDigit(s.charAt(i)) && freqNB[s.charAt(i) -'0']==false){
+                freqNB[s.charAt(i)-'0']=true;
+                int mirror=9-(s.charAt(i)-'0');
+                freqNB[mirror]=true;
+                ans+=Math.abs(freqN[s.charAt(i)-'0']-freqN[mirror]);
+
+            }
+        }
+
+        return ans;
+    }
+    
     public static void main(String[] args) {
         
     }
